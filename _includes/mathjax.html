@@ -1,0 +1,29 @@
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+{% if page.mathjax %}
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\(', '\)'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+{% endif %}
