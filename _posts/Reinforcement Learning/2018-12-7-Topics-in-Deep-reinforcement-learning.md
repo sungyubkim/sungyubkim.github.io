@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Awesome Reinforcement Learning Papers-WIP
-date: 2017-7-4
+title: Topics in Deep reinforcement learning
+date: 2018-12-7
 tags:
   - Reinforcement Learning
 ---
