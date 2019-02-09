@@ -1,10 +1,10 @@
 # Site settings
 title: Transport it!
 description: "Notes on machine learning and other subjects"
-url: "https://edmophia.github.io/"
+url: "https://sungyubkim.github.io/"
 author:
   name: "Sung-Yub Kim"
-  email: "edmophia@snu.ac.kr"
+  email: "sungyub.kim@kaist.ac.kr"
 
 # Build settings
 baseurl: / # Change this to your relative path (ex: /blog/), or leave just a /
