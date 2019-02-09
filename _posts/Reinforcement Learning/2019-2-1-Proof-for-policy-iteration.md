@@ -4,11 +4,12 @@ title: Proof for policy iteration algorithm
 date: 2019-2-9
 tags:
   - Reinforcement Learning
+mathjax: true
 ---
 
 
 
-# Step 1. Policy evalutation makes random value function converge to correct value function.
+## Step 1. Policy evalutation makes random value function converge to correct value function.
 
 **Definition 1.($\gamma$-contraction mapping)**
 
@@ -59,4 +60,4 @@ $$
 $$
 So we get $F^{\pi}(v)$ is a $\gamma$-contraction mapping.
 
-# Step 2. (Greedy) Policy Improvement makes current policy better.
+## Step 2. (Greedy) Policy Improvement makes current policy better.
