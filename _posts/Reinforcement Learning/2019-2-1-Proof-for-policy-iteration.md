@@ -19,13 +19,17 @@ mathjax: true
 $$
 \|F(x)- F(y)\| \le \gamma \|x-y\|
 $$
+$\square$
 
 
 
-
-Therem 1. &#40; Contraction Mapping Theorem &#41;
+**Therem 1.  Contraction Mapping Theorem** 
 
 For a $\gamma$-contraction $F$ in a complete noremed vector space $\mathcal{X}$, **$F$ converges to a unique fixed point** in $\mathcal{X}$.
+
+$\square$
+
+
 
 To use Contraction Mapping Theorem, remember **Bellman expectation equation, or consistency of fixed policy, ** is
 
@@ -38,7 +42,7 @@ $$
 $$
 
 
-If we define $r^{\pi}_s$, $T^{\pi}_{s,s'}$ as
+If we define $r^{\pi}_s, T^{\pi}_{s,s'}$ as
 
 
 $$
@@ -84,7 +88,7 @@ So we get $F^{\pi}(v)$ is a $\gamma$-contraction mapping.
 
 #### Step 2. Greed Policy Improvement makes current policy better.
 
-Let $\pi​$ is origianl policy and $\pi'​$ is a new policy by applying greedy policy improvement. Then we get
+Let $\pi$ is origianl policy and $\pi'$ is a new policy by applying greedy policy improvement. Then we get
 
 
 $$
