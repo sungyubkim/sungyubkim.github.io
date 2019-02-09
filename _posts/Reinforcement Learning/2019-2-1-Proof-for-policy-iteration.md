@@ -11,7 +11,7 @@ mathjax: true
 
 ## Step 1. Policy evalutation makes random value function converge to correct value function.
 
-Definition 1.($\gamma​$-contraction mapping)
+Definition 1.\($\gamma$-contraction mapping\)
 
  An operator $F$ on a normed vector space $\mathcal{X}$ is a $\gamma$-contraction, for $0<\gamma <1$, provided for all $x,y \in \mathcal{X}$
 
@@ -23,11 +23,11 @@ $$
 
 
 
-Therem 1. (Contraction Mapping Theorem)
+Therem 1. \(Contraction Mapping Theorem\)
 
 For a $\gamma$-contraction $F$ in a complete noremed vector space $\mathcal{X}$, **$F$ converges to a unique fixed point** in $\mathcal{X}$.
 
-To use Contraction Mapping Theorem, remember **Bellman expectation equation (consistency of fixed policy)** is
+To use Contraction Mapping Theorem, remember **Bellman expectation equation \(consistency of fixed policy\)** is
 
 
 $$
