@@ -9,7 +9,7 @@ mathjax: true
 
 
 
-## Step 1. Policy evalutation makes random value function converge to correct value function.
+#### Step 1. Policy evalutation makes random value function converge to correct value function.
 
 Definition 1.\($\gamma$-contraction mapping\)
 
@@ -82,7 +82,7 @@ $$
 
 So we get $F^{\pi}(v)$ is a $\gamma$-contraction mapping.
 
-## Step 2. (Greedy) Policy Improvement makes current policy better.
+#### Step 2. (Greedy) Policy Improvement makes current policy better.
 
 Let $\pi$ is origianl policy and $\pi'$ is a new policy by applying greedy policy improvement. Then we get
 
