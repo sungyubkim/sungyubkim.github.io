@@ -19,6 +19,8 @@ mathjax: true
 $$
 \|F(x)- F(y)\| \le \gamma \|x-y\|
 $$
+
+
 $\square$
 
 
