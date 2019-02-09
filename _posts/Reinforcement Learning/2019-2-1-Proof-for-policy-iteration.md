@@ -33,7 +33,7 @@ $\square$
 
 
 
-To use Contraction Mapping Theorem, remember **Bellman expectation equation, or consistency of fixed policy, ** is
+To use Contraction Mapping Theorem, remember Bellman expectation equation, or consistency of fixed policy, is
 
 
 $$
@@ -44,7 +44,7 @@ $$
 $$
 
 
-If we define $r^{\pi}_s, T^{\pi}_{s,s'}$ as
+If we define $r^{\pi} , T^{\pi}$ as
 
 
 $$
@@ -57,7 +57,7 @@ $$
 
 
 
-Then, equation (3) can be written as following
+Then, equation 3 can be written as following
 
 
 $$
