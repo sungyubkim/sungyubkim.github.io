@@ -11,7 +11,7 @@ mathjax: true
 
 #### Step 1. Policy evalutation makes random value function converge to correct value function.
 
-Definition 1.\($\gamma$-contraction mapping\)
+Definition 1.&#40; $\gamma$-contraction mapping &#41;
 
  An operator $F$ on a normed vector space $\mathcal{X}$ is a $\gamma$-contraction, for $0<\gamma <1$, provided for all $x,y \in \mathcal{X}$
 
@@ -23,11 +23,11 @@ $$
 
 
 
-Therem 1. \(Contraction Mapping Theorem\)
+Therem 1. &#40; Contraction Mapping Theorem &#41;
 
 For a $\gamma$-contraction $F$ in a complete noremed vector space $\mathcal{X}$, **$F$ converges to a unique fixed point** in $\mathcal{X}$.
 
-To use Contraction Mapping Theorem, remember **Bellman expectation equation \(consistency of fixed policy\)** is
+To use Contraction Mapping Theorem, remember **Bellman expectation equation &#40;consistency of fixed policy &#41;** is
 
 
 $$
@@ -82,7 +82,7 @@ $$
 
 So we get $F^{\pi}(v)$ is a $\gamma$-contraction mapping.
 
-#### Step 2. (Greedy) Policy Improvement makes current policy better.
+#### Step 2. &#40;Greedy&#41; Policy Improvement makes current policy better.
 
 Let $\pi$ is origianl policy and $\pi'$ is a new policy by applying greedy policy improvement. Then we get
 
