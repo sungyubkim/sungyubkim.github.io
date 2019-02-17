@@ -14,6 +14,7 @@ mathjax: true
 - NIPS 2014
 
 - If D is optimal critic(or discriminator) and G can improve its loss, then
+  
 
 $$
 p_g \rightarrow p_{data}.
@@ -29,7 +30,7 @@ $$
   $$
   
 
-  $\square​$
+  $\square$
 
   The density of each sample $x$ is hard to estimate in the case of high-dim (like image, text, etc.)
 
