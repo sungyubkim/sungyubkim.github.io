@@ -28,6 +28,7 @@ $$
   $$
   D_{G}^{\star}(x) = \frac{p_r(x)}{p_r(x) + p_g(x)}.
   $$
+
   
 
   $\square$
