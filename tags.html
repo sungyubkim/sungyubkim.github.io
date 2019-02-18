@@ -19,7 +19,7 @@ permalink: /tags/
   {% else %}
     {% for tag in tags_list %}
       <li>
-        <a href="/tags#{{ tag[0] | slugify }}-ref" class='list-group-item'>{{ tag | capitalize }}</a>
+        <a href="/tags#{{ tag[0] | slugify }}-ref" class='list-group-item'>{{ tag[0] | capitalize }}</a>
         <span class='badge-success'>{{ tag[1].size }}</span>
       </li>
     {% endfor %}
@@ -30,7 +30,7 @@ permalink: /tags/
 <hr />
 
 {% for tag in site.tags %}
-  <h2 class='tag-header' id="{{ tag[0] | slugify }}-ref">{{ tag | capitalize }}</h2>
+  <h2 class='tag-header' id="{{ tag[0] | slugify }}-ref">{{ tag[0] | capitalize }}</h2>
   <ul>
     {% assign pages_list = tag[1] %}
 
