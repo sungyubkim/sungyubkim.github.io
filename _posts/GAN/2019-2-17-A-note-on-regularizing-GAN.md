@@ -13,7 +13,7 @@ mathjax: true
 
 - NIPS 2014
 
-- If D is optimal critic\\(or discriminator\\) and G can improve its loss, then
+- If D is optimal critic(or discriminator) and G can improve its loss, then
   
 
 $$
