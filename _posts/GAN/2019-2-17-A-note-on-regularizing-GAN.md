@@ -12,9 +12,7 @@ mathjax: true
 ## 1. Vanilla GAN
 
 - NIPS 2014
-
 - If D is optimal critic(or discriminator) and G can improve its loss, then
-  
 
 $$
 p_g \rightarrow p_{data}.
