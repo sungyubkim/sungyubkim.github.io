@@ -31,6 +31,10 @@ My research interest includes:
 
 ## Published Papers
 
+- <a href="https://openreview.net/pdf?id=98d7DLMGdt">**LANTERN: Accelerating Visual Autoregressive Models with Relaxed Speculative Decoding**</a> \\
+Doohyuk Jang, Sihwan Park, June Yong Yang, Yeonsung Jung, Jihun Yun, Souvik Kundu, <u>Sung-Yub Kim</u>, Eunho Yang \\
+*ICLR, 2025* (Co-Correspondence Author)
+
 - <a href="https://openreview.net/pdf?id=ZVrrPNqHFw">**A Simple Remedy for Dataset Bias via Self-Influence: A Mislabeled Sample Perspective**</a> \\
 Yeonsung Jung\*, Jaeyun Song\*, June Yong Yang\*, Jin-Hwa Kim, <u>Sung-Yub Kim</u>, and Eunho Yang (\*: equal contribution) \\
 *NeurIPS, 2024*
@@ -41,15 +45,15 @@ Sanghyun Jo\*, Soohyun Ryu\*, <u>Sungyub Kim</u>, Eunho Yang, Kyungsu Kim (\*: e
 
 - <a href="https://openreview.net/pdf?id=tz4ECtAu8e">**GEX: A flexible method for approximating influence via Geometric Ensemble**</a> \\
 <u>Sung-Yub Kim</u>, Kyungsu Kim, Eunho Yang \\
-*NeurIPS, 2023*
+*NeurIPS, 2023* (1st Author)
 
 -  <a href="https://openreview.net/pdf?id=OcKwZhPwHA">**RGE: A Repulsive Graph Rectification for Node Classification via Influence**</a>\\
 Jaeyun Song\*, <u>Sung-Yub Kim</u>\*, Eunho Yang (\*: equal contribution) \\
-*ICML, 2023*
+*ICML, 2023* (Co-1st Author)
 
 - <a href="https://openreview.net/pdf?id=VZ5EaTI6dqa">**Scale-invariant Bayesian Neural Networks with Connectivity Tangent Kernel**</a> \\
 <u>Sung-Yub Kim</u>, Sihwan Park, Kyungsu Kim, Eunho Yang \\
-*ICLR, 2023 (Spotlighted)*
+*ICLR, 2023 (Spotlighted)* (1st Author)
 
 - <a href="https://rllab.snu.ac.kr/publications/papers/2020_rss_tac.pdf">**Generalized Tsallis Entropy Reinforcement Learning and Its Application to Soft Mobile Robots**</a> \\
 Kyungjae Lee, <u>Sung-Yub Kim</u>, Sungbin Lim, Sungjoon Choi, Mineui Hong, Jaein Kim, Yong-Lae Park, and Songhwai Oh \\
