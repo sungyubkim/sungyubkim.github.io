@@ -9,7 +9,7 @@ redirect_from:
   - /about.html
 ---
 
-I'm a researcher in the LLM team @ <a href="https://www.sait.samsung.co.kr/">**SAIT, Samsung Electronics**</a>.
+I'm a researcher in the LLM team @ <a href="https://www.sait.samsung.co.kr/">**AI Center, Samsung Electronics**</a>.
 
 My research interest includes:
 - Post-hoc analysis & adaptation of Foundation models (e.g., Large-Language Models and Vision-Language Models).
