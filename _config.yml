@@ -20,7 +20,7 @@ title                    : "Sung-Yub Kim"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : &name "Sung-Yub Kim"
-description              : &description "Researcher LLM team @ SAIT"
+description              : &description "AI Researcher @ SAMSUNG"
 url                      : "https://sungyubkim.github.io/"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "sungyubkim/sungyubkim.github.io"
@@ -104,7 +104,7 @@ analytics:
 author:
   name             : "Sung-Yub Kim"
   avatar           : "/assets/images/bio-photo.png"
-  bio              : "Research Scientist @ SAIT"
+  bio              : "Research Scientist @ SAMSUNG"
   location         : 
   links:
     - label: "Email"
