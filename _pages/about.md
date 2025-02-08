@@ -31,35 +31,35 @@ My research interest includes:
 
 ## Published Papers
 
-- <a href="https://openreview.net/pdf?id=98d7DLMGdt">**LANTERN: Accelerating Visual Autoregressive Models with Relaxed Speculative Decoding**</a> \\
+[7] <a href="https://openreview.net/pdf?id=98d7DLMGdt">**LANTERN: Accelerating Visual Autoregressive Models with Relaxed Speculative Decoding**</a> \\
 Doohyuk Jang, Sihwan Park, June Yong Yang, Yeonsung Jung, Jihun Yun, Souvik Kundu, <u>Sung-Yub Kim</u>, Eunho Yang \\
 *ICLR, 2025* (Co-Correspondence Author)
 
-- <a href="https://openreview.net/pdf?id=ZVrrPNqHFw">**A Simple Remedy for Dataset Bias via Self-Influence: A Mislabeled Sample Perspective**</a> \\
+[6] <a href="https://openreview.net/pdf?id=ZVrrPNqHFw">**A Simple Remedy for Dataset Bias via Self-Influence: A Mislabeled Sample Perspective**</a> \\
 Yeonsung Jung\*, Jaeyun Song\*, June Yong Yang\*, Jin-Hwa Kim, <u>Sung-Yub Kim</u>, and Eunho Yang (\*: equal contribution) \\
 *NeurIPS, 2024*
 
-- <a href="https://arxiv.org/abs/2404.00384">**TTD: Text-Tag Self-Distillation Enhancing Image-Text Alignment in CLIP to Alleviate Single Tag Bias**</a> \\
+[5] <a href="https://arxiv.org/abs/2404.00384">**TTD: Text-Tag Self-Distillation Enhancing Image-Text Alignment in CLIP to Alleviate Single Tag Bias**</a> \\
 Sanghyun Jo\*, Soohyun Ryu\*, <u>Sungyub Kim</u>, Eunho Yang, Kyungsu Kim (\*: equal contribution) \\
 *European Conference on Computer Vision (ECCV), 2024*
 
-- <a href="https://openreview.net/pdf?id=tz4ECtAu8e">**GEX: A flexible method for approximating influence via Geometric Ensemble**</a> \\
+[4] <a href="https://openreview.net/pdf?id=tz4ECtAu8e">**GEX: A flexible method for approximating influence via Geometric Ensemble**</a> \\
 <u>Sung-Yub Kim</u>, Kyungsu Kim, Eunho Yang \\
 *NeurIPS, 2023* (1st Author)
 
--  <a href="https://openreview.net/pdf?id=OcKwZhPwHA">**RGE: A Repulsive Graph Rectification for Node Classification via Influence**</a>\\
+[3]  <a href="https://openreview.net/pdf?id=OcKwZhPwHA">**RGE: A Repulsive Graph Rectification for Node Classification via Influence**</a>\\
 Jaeyun Song\*, <u>Sung-Yub Kim</u>\*, Eunho Yang (\*: equal contribution) \\
 *ICML, 2023* (Co-1st Author)
 
-- <a href="https://openreview.net/pdf?id=VZ5EaTI6dqa">**Scale-invariant Bayesian Neural Networks with Connectivity Tangent Kernel**</a> \\
+[2] <a href="https://openreview.net/pdf?id=VZ5EaTI6dqa">**Scale-invariant Bayesian Neural Networks with Connectivity Tangent Kernel**</a> \\
 <u>Sung-Yub Kim</u>, Sihwan Park, Kyungsu Kim, Eunho Yang \\
 *ICLR, 2023 (Spotlighted)* (1st Author)
 
-- <a href="https://rllab.snu.ac.kr/publications/papers/2020_rss_tac.pdf">**Generalized Tsallis Entropy Reinforcement Learning and Its Application to Soft Mobile Robots**</a> \\
+[1] <a href="https://rllab.snu.ac.kr/publications/papers/2020_rss_tac.pdf">**Generalized Tsallis Entropy Reinforcement Learning and Its Application to Soft Mobile Robots**</a> \\
 Kyungjae Lee, <u>Sung-Yub Kim</u>, Sungbin Lim, Sungjoon Choi, Mineui Hong, Jaein Kim, Yong-Lae Park, and Songhwai Oh \\
 *Robotics: Science and Systems Foundation*
 
-## Projects
+## Projects (in school)
 
 - Autonomous Intelligent Digital Companion Framework and Application \\
 **Korea Electronics Technology Institute**, *2019-2021*
