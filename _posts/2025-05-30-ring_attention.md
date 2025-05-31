@@ -4,7 +4,7 @@ date: 2025-05-30
 last_modified_at: 2025-05-30
 type: posts
 layout: single
-author_profile: true
+author_profile: false
 comments: true
 permalink: /blog/ring_attention/
 tags:

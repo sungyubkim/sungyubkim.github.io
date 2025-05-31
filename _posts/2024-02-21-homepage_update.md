@@ -4,7 +4,7 @@ date: 2024-02-21
 last_modified_at: 2024-02-21
 type: posts
 layout: single
-author_profile: true
+author_profile: false
 comments: true
 permalink: /blog/homepage-update/
 tags:
