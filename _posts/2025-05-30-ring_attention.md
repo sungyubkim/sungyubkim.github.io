@@ -38,18 +38,18 @@ use_math: true
 # Related Papers
 
 **분산 어텐션 방법론:**
-- [[DISTFLASHATTN]] - GPU 간 FlashAttention 분산을 위한 방법
-- [[Striped Attention]] - 로드 밸런싱을 위한 대안적 어텐션 분배 패턴
-- [[DeepSpeed Ulysses]] - 어텐션 분산을 활용한 시퀀스 병렬처리
+- [DISTFLASHATTN](https://arxiv.org/pdf/2310.03294) - GPU 간 FlashAttention 분산을 위한 방법
+- [Striped Attention](https://arxiv.org/pdf/2311.09431) - 로드 밸런싱을 위한 대안적 어텐션 분배 패턴
+- [DeepSpeed Ulysses](https://arxiv.org/pdf/2309.14509) - 어텐션 분산을 활용한 시퀀스 병렬처리
 
 **긴 시퀀스 훈련:**
-- [[Sequence Parallelism - Long Sequence Training from System Perspective]] - 시퀀스 병렬처리에 대한 종합적 관점
-- [[Context Parallelism for Scalable Million-Token Inference]] - 추론을 위한 컨텍스트 레벨 병렬처리
+- [Sequence Parallelism - Long Sequence Training from System Perspective](https://arxiv.org/pdf/2105.13120) - 시퀀스 병렬처리에 대한 종합적 관점
+- [Context Parallelism for Scalable Million-Token Inference](https://arxiv.org/pdf/2411.01783) - 추론을 위한 컨텍스트 레벨 병렬처리
 - [[LoongTrain]] - 매우 긴 시퀀스를 위한 2D 어텐션 병렬처리
 
 **메모리 최적화:**
-- [[Reducing Activation Recomputation in Large Transformer Models]] - 메모리 효율적인 훈련 기법
-- [[USP]] - Ring과 Ulysses 방법을 결합한 통합 접근법
+- [Reducing Activation Recomputation in Large Transformer Models](https://arxiv.org/pdf/2205.05198) - 메모리 효율적인 훈련 기법
+- [USP](https://arxiv.org/pdf/2405.07719) - Ring과 Ulysses 방법을 결합한 통합 접근법
 
 ---
 
