@@ -45,7 +45,7 @@ use_math: true
 **긴 시퀀스 훈련:**
 - [Sequence Parallelism - Long Sequence Training from System Perspective](https://arxiv.org/pdf/2105.13120) - 시퀀스 병렬처리에 대한 종합적 관점
 - [Context Parallelism for Scalable Million-Token Inference](https://arxiv.org/pdf/2411.01783) - 추론을 위한 컨텍스트 레벨 병렬처리
-- [[LoongTrain]] - 매우 긴 시퀀스를 위한 2D 어텐션 병렬처리
+- [LoongTrain](https://arxiv.org/pdf/2406.18485) - 매우 긴 시퀀스를 위한 2D 어텐션 병렬처리
 
 **메모리 최적화:**
 - [Reducing Activation Recomputation in Large Transformer Models](https://arxiv.org/pdf/2205.05198) - 메모리 효율적인 훈련 기법
