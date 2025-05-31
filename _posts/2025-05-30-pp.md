@@ -17,7 +17,6 @@ toc: true
 toc_label: "Contents"
 toc_icon: "file-text"
 toc_sticky: true
-classes: wide
 ---
 
 # TL;DR
