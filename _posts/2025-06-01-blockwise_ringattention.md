@@ -1,12 +1,12 @@
 ---
-title: "Paper Review: Ring Attention"
-date: 2025-05-30
-last_modified_at: 2025-05-30
+title: "Paper Review: Blockwise RingAttention"
+date: 2025-06-01
+last_modified_at: 2025-06-01
 type: posts
 layout: single
 author_profile: false
 comments: true
-permalink: /blog/ring_attention/
+permalink: /blog/blockwise_ringattention/
 tags:
   - LLM
   - Attention
@@ -21,9 +21,9 @@ toc_sticky: true
 
 # TL;DR
 
-> **RingAttention**은 AI 모델이 매우 긴 시퀀스(전체 책, 긴 동영상, 대규모 데이터셋 등)를 처리하지 못하게 하는 근본적인 메모리 병목 현상을 해결합니다. 기존 트랜스포머는 제곱 메모리 요구사항을 가집니다 - 100만 토큰을 처리하려면 1M×1M 어텐션 행렬을 저장해야 하는데, 이는 계산상 불가능합니다.
+> **Blockwise RingAttention**은 AI 모델이 매우 긴 시퀀스(전체 책, 긴 동영상, 대규모 데이터셋 등)를 처리하지 못하게 하는 근본적인 메모리 병목 현상을 해결합니다. 기존 트랜스포머는 제곱 메모리 요구사항을 가집니다 - 100만 토큰을 처리하려면 1M×1M 어텐션 행렬을 저장해야 하는데, 이는 계산상 불가능합니다.
 > 
-> **핵심 혁신**: RingAttention은 이 계산을 여러 장치에 "링(ring)" 토폴로지로 분산시켜, 각 장치가 시퀀스의 일부를 처리하고 다음 장치로 정보를 전달합니다. 이를 통해 **장치_수 × 기존_한계**만큼 긴 시퀀스 처리가 가능합니다.
+> **핵심 혁신**: Blockwise RingAttention은 이 계산을 여러 장치에 "링(ring)" 토폴로지로 분산시켜, 각 장치가 시퀀스의 일부를 처리하고 다음 장치로 정보를 전달합니다. 이를 통해 **장치_수 × 기존_한계**만큼 긴 시퀀스 처리가 가능합니다.
 > 
 > **주요 기여점**:
 > 
@@ -47,7 +47,7 @@ toc_sticky: true
 - [DeepSpeed Ulysses](https://arxiv.org/pdf/2309.14509) - 어텐션 분산을 활용한 시퀀스 병렬처리
 
 **긴 시퀀스 훈련:**
-- [Sequence Parallelism - Long Sequence Training from System Perspective](https://arxiv.org/pdf/2105.13120) - 시퀀스 병렬처리에 대한 종합적 관점
+- [Ring Self-Attention](../ring-self-attention) - 시퀀스 병렬처리에 대한 종합적 관점
 - [Context Parallelism for Scalable Million-Token Inference](https://arxiv.org/pdf/2411.01783) - 추론을 위한 컨텍스트 레벨 병렬처리
 - [LoongTrain](https://arxiv.org/pdf/2406.18485) - 매우 긴 시퀀스를 위한 2D 어텐션 병렬처리
 
@@ -76,7 +76,7 @@ toc_sticky: true
 - GPT-3.5: 16K 토큰 (~32페이지 텍스트)
 - Claude 2: 200K 토큰 (~400페이지)
 - Gemini 1.5: 100만 토큰 (~2,000페이지)
-- **RingAttention**: 1억+ 토큰 (~20만 페이지 또는 300권 이상의 책)
+- **Blockwise RingAttention**: 1억+ 토큰 (~20만 페이지 또는 300권 이상의 책)
 
 ### 논문의 동기 논리
 
@@ -88,7 +88,7 @@ toc_sticky: true
 
 **제 분석**: 논문은 해결책이 단순히 어텐션 계산 최적화가 아니라, 여러 장치에서 계산을 분산하고 조율하는 방식을 근본적으로 재고하는 것임을 훌륭하게 인식했습니다.
 
-## 2. RingAttention 솔루션: 혁명적 접근법
+## 2. Blockwise RingAttention 솔루션: 혁명적 접근법
 
 ### 핵심 혁신: 링 토폴로지 + 블록별 계산
 
@@ -104,7 +104,7 @@ def ring_attention_concept():
     # 기존 방식 (불가능):
     # 장치 1: 전체 100만 토큰 시퀀스 처리 (불가능)
     
-    # RingAttention 방식:
+    # Blockwise RingAttention 방식:
     장치수 = 8
     장치당_토큰수 = 1_000_000 // 장치수  # 각각 125K 토큰
     
@@ -184,12 +184,12 @@ def setup_ring_communication(num_devices):
     return ring
 ```
 
-**3단계: 핵심 RingAttention 계산**
+**3단계: 핵심 Blockwise RingAttention 계산**
 
 ```python
 def ring_attention_core(local_qkv, ring_topology, device_id):
     """
-    RingAttention의 핵심: 장치 링에서 어텐션 계산
+    Blockwise RingAttention의 핵심: 장치 링에서 어텐션 계산
     
     핵심 혁신: 전체 어텐션 행렬을 구체화하지 않고 온라인 소프트맥스 계산
     """
@@ -235,7 +235,7 @@ def ring_attention_core(local_qkv, ring_topology, device_id):
     return output
 ```
 
-**제 기술적 통찰**: 이 접근법의 훌륭함은 온라인 소프트맥스 계산에 있습니다. 기존 어텐션은 전체 어텐션 행렬 저장이 필요하지만, RingAttention은 점진적 업데이트가 가능한 실행 통계를 유지합니다. 이는 수학적으로 동등하지만 훨씬 메모리 효율적입니다.
+**제 기술적 통찰**: 이 접근법의 훌륭함은 온라인 소프트맥스 계산에 있습니다. 기존 어텐션은 전체 어텐션 행렬 저장이 필요하지만, Blockwise RingAttention은 점진적 업데이트가 가능한 실행 통계를 유지합니다. 이는 수학적으로 동등하지만 훨씬 메모리 효율적입니다.
 
 ## 4. 실험 결과 및 분석
 
@@ -258,7 +258,7 @@ def ring_attention_core(local_qkv, ring_topology, device_id):
 |32×A100|1M|24×10³|**224×10³**|**9.3배 향상**|_규모에서 효율성 유지_|
 |TPUv4-512|16M|1024×10³|**8192×10³**|**8.0배 향상**|_TPU에서 일관된 확장_|
 
-**핵심 통찰**: 8-9배 MFU 개선은 RingAttention이 단순히 더 긴 컨텍스트를 가능하게 할 뿐만 아니라 이전 방법보다 더 효율적으로 수행한다는 것을 나타내므로 놀랍습니다. 이는 통신 오버헤드가 영리한 중첩을 통해 성공적으로 숨겨졌음을 시사합니다.
+**핵심 통찰**: 8-9배 MFU 개선은 Blockwise RingAttention이 단순히 더 긴 컨텍스트를 가능하게 할 뿐만 아니라 이전 방법보다 더 효율적으로 수행한다는 것을 나타내므로 놀랍습니다. 이는 통신 오버헤드가 영리한 중첩을 통해 성공적으로 숨겨졌음을 시사합니다.
 
 ### 제거 연구(Ablation Study) 결과
 
@@ -280,7 +280,7 @@ def ring_attention_core(local_qkv, ring_topology, device_id):
 |AT + BPT|0.65|0.58|0.51|**0.58**|_강력한 기준선_|
 |**AT + Ring Attention**|**0.72**|**0.64**|**0.58**|**0.65**|_**12% 개선 - 상당함**_|
 
-**제 분석**: RL 결과는 RingAttention의 이점이 언어 모델링을 넘어 확장된다는 것을 보여주므로 특히 설득력이 있습니다. 12% 개선은 더 긴 컨텍스트가 진정으로 순차적 의사결정을 개선한다는 것을 시사하며, 이는 로봇공학과 자율 시스템에 깊은 의미를 가집니다.
+**제 분석**: RL 결과는 Blockwise RingAttention의 이점이 언어 모델링을 넘어 확장된다는 것을 보여주므로 특히 설득력이 있습니다. 12% 개선은 더 긴 컨텍스트가 진정으로 순차적 의사결정을 개선한다는 것을 시사하며, 이는 로봇공학과 자율 시스템에 깊은 의미를 가집니다.
 
 ## 5. 핵심 조건과 한계
 
@@ -337,7 +337,7 @@ def ring_attention_core(local_qkv, ring_topology, device_id):
 
 ### 미래 연구에 대한 제 예측
 
-1. **하이브리드 접근법**: 더 큰 효율성을 위해 RingAttention과 스파스 어텐션 패턴 결합
+1. **하이브리드 접근법**: 더 큰 효율성을 위해 Blockwise RingAttention과 스파스 어텐션 패턴 결합
 2. **동적 링 토폴로지**: 워크로드 특성에 반응하는 적응형 링 구조
 3. **계층적 링 시스템**: 극한 규모 배포를 위한 다단계 링
 4. **하드웨어 공동 설계**: 링 통신 패턴에 최적화된 맞춤형 인터커넥트
@@ -368,7 +368,7 @@ def ring_attention_core(local_qkv, ring_topology, device_id):
 
 ### 제 전체 평가
 
-RingAttention은 완전히 새로운 범주의 AI 응용을 가능하게 할 시퀀스 모델링의 근본적 돌파구를 나타냅니다. 하드웨어 요구사항이 즉시 채택을 제한하지만, 분산 어텐션 계산에 대한 핵심 통찰은 차세대 AI 시스템에 영향을 미칠 가능성이 높습니다.
+Blockwise RingAttention은 완전히 새로운 범주의 AI 응용을 가능하게 할 시퀀스 모델링의 근본적 돌파구를 나타냅니다. 하드웨어 요구사항이 즉시 채택을 제한하지만, 분산 어텐션 계산에 대한 핵심 통찰은 차세대 AI 시스템에 영향을 미칠 가능성이 높습니다.
 
 이 논문은 트랜스포머의 메모리 벽이 영리한 분산 컴퓨팅을 통해 극복될 수 있음을 성공적으로 보여주어, 이전에는 불가능했던 규모에서 정보를 처리하고 추론할 수 있는 AI 시스템으로의 문을 열었습니다. 이 작업은 더 능력 있고 포괄적인 AI 시스템으로의 진화에서 중요한 순간으로 기억될 가능성이 높습니다.
 
