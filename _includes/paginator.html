@@ -21,10 +21,10 @@
     {% endif %}
 
     {% assign page_start = 2 %}
-    <!-- {% if paginator.page > 4 %}
+    {% if paginator.page > 4 %}
       {% assign page_start = paginator.page | minus: 2 %}
       {% comment %} Ellipsis for truncated links {% endcomment %}
-      <li><a href="#" class="disabled">&hellip;</a></li> -->
+      <li><a href="#" class="disabled">&hellip;</a></li>
     {% endif %}
 
     {% assign page_end = paginator.total_pages | minus: 1 %}
