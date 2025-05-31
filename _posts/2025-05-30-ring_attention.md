@@ -14,7 +14,7 @@ tags:
   - Memory-Optimization
 use_math: true
 toc: true
-toc_label: "목차"
+toc_label: "Contents"
 toc_icon: "file-text"
 toc_sticky: true
 ---
