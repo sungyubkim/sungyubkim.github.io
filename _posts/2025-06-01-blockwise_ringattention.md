@@ -1,5 +1,5 @@
 ---
-title: "Paper Review: Blockwise RingAttention"
+title: "Blockwise RingAttention"
 date: 2025-06-01
 last_modified_at: 2025-06-01
 type: posts
@@ -52,7 +52,7 @@ toc_sticky: true
 - [LoongTrain](https://arxiv.org/pdf/2406.18485) - 매우 긴 시퀀스를 위한 2D 어텐션 병렬처리
 
 **메모리 최적화:**
-- [Reducing Activation Recomputation in Large Transformer Models](https://arxiv.org/pdf/2205.05198) - 메모리 효율적인 훈련 기법
+- [Reducing Activation Recomputation in Large Transformer Models](../sp) - 메모리 효율적인 훈련 기법
 - [USP](https://arxiv.org/pdf/2405.07719) - Ring과 Ulysses 방법을 결합한 통합 접근법
 
 ---

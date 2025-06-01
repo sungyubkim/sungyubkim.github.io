@@ -1,5 +1,5 @@
 ---
-title: "Paper Review: Ring Self-Attention"
+title: "Ring Self-Attention"
 date: 2025-05-30
 last_modified_at: 2025-05-30
 type: posts
@@ -47,7 +47,7 @@ toc_sticky: true
 **병렬화 통합:**
 - [Tensor Parallelism](../tp) - 텐서 병렬화와의 결합
 - [GPipe](../pp) - 파이프라인 병렬화와의 통합
-- [Reducing Activation Recomputation in Large Transformer Models](https://arxiv.org/pdf/2205.05198) - 메모리 효율적인 병렬 훈련
+- [Reducing Activation Recomputation in Large Transformer Models](../sp) - 메모리 효율적인 병렬 훈련
 
 **긴 컨텍스트 처리:**
 - [Context Parallelism for Scalable Million-Token Inference](https://arxiv.org/pdf/2411.01783) - 추론 시 시퀀스 병렬화

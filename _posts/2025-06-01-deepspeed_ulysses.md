@@ -1,5 +1,5 @@
 ---
-title: "Paper Review: DeepSpeed Ulysses"
+title: "DeepSpeed Ulysses"
 date: 2025-06-01
 last_modified_at: 2025-06-01
 type: posts
@@ -44,7 +44,7 @@ toc_sticky: true
 
 **시스템 통합:**
 - [Tensor Parallelism](../tp) - 텐서 병렬화와의 결합
-- [Reducing Activation Recomputation in Large Transformer Models](https://arxiv.org/pdf/2205.05198) - 메모리 효율적인 훈련
+- [Reducing Activation Recomputation in Large Transformer Models](../sp) - 메모리 효율적인 훈련
 
 ---
 
