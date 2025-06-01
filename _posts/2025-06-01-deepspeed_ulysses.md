@@ -30,21 +30,21 @@ toc_sticky: true
 # Related Papers
 
 **시퀀스 병렬화 방법론:**
-- [[Blockwise RingAttention]] - 링 토폴로지를 활용한 시퀀스 병렬화
-- [[Ring Self-Attention]] - 시퀀스 병렬화 종합 분석
-- [[USP]] - Ulysses와 Ring을 통합한 시퀀스 병렬화
+- [Blockwise RingAttention](../blockwise_ringattention) - 링 토폴로지를 활용한 시퀀스 병렬화
+- [Ring Self-Attention](../ring-self-attention) - 시퀀스 병렬화 종합 분석
+- [USP](https://arxiv.org/pdf/2405.07719) - Ulysses와 Ring을 통합한 시퀀스 병렬화
 
 **긴 시퀀스 훈련:**
-- [[LoongTrain]] - 2D 어텐션을 활용한 긴 시퀀스 훈련
-- [[Context Parallelism for Scalable Million-Token Inference]] - 컨텍스트 병렬화를 통한 추론
+- [LoongTrain](https://arxiv.org/pdf/2406.18485) - 2D 어텐션을 활용한 긴 시퀀스 훈련
+- [Context Parallelism for Scalable Million-Token Inference](https://arxiv.org/pdf/2411.01783) - 컨텍스트 병렬화를 통한 추론
 
 **어텐션 최적화:**
-- [[DISTFLASHATTN]] - 분산 FlashAttention 구현
-- [[Striped Attention]] - 효율적인 어텐션 분배 패턴
+- [DISTFLASHATTN](https://arxiv.org/pdf/2310.03294) - 분산 FlashAttention 구현
+- [Striped Attention](https://arxiv.org/pdf/2311.09431) - 효율적인 어텐션 분배 패턴
 
 **시스템 통합:**
-- [[Tensor Parallelism]] - 텐서 병렬화와의 결합
-- [[Reducing Activation Recomputation in Large Transformer Models]] - 메모리 효율적인 훈련
+- [Tensor Parallelism](../tp) - 텐서 병렬화와의 결합
+- [Reducing Activation Recomputation in Large Transformer Models](https://arxiv.org/pdf/2205.05198) - 메모리 효율적인 훈련
 
 ---
 
