@@ -8,10 +8,10 @@ author_profile: false
 comments: true
 permalink: /blog/blockwise_ringattention/
 tags:
-  - LLM
-  - Attention
-  - Parallelism
-  - Memory-Optimization
+    - parallelism/sequence-distribution
+    - attention/ring-communication
+    - memory/long-context
+    - systems/distributed-computation
 use_math: true
 toc: true
 toc_label: "Contents"
@@ -53,7 +53,7 @@ toc_sticky: true
 
 **메모리 최적화:**
 - [Reducing Activation Recomputation in Large Transformer Models](../sp) - 메모리 효율적인 훈련 기법
-- [USP](https://arxiv.org/pdf/2405.07719) - Ring과 Ulysses 방법을 결합한 통합 접근법
+- [USP](../usp) - Ring과 Ulysses 방법을 결합한 통합 접근법
 
 ---
 

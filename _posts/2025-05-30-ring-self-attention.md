@@ -8,10 +8,10 @@ author_profile: false
 comments: true
 permalink: /blog/ring-self-attention/
 tags:
-  - LLM
-  - Parallelism
-  - Training
-  - Distributed-Systems
+    - parallelism/sequence-distribution
+    - attention/ring-communication
+    - systems/distributed-training
+    - training/4d-parallelism
 use_math: true
 toc: true
 toc_label: "Contents"
@@ -37,7 +37,7 @@ toc_sticky: true
 **시퀀스 병렬화 발전:**
 - [Blockwise RingAttention](../blockwise_ringattention) - 링 기반 시퀀스 병렬화의 현대적 발전
 - [DeepSpeed Ulysses](https://arxiv.org/pdf/2309.14509) - 시퀀스 병렬화의 실용적 구현
-- [USP](https://arxiv.org/pdf/2405.07719) - 통합 시퀀스 병렬화 프레임워크
+- [USP](../usp) - 통합 시퀀스 병렬화 프레임워크
 
 **분산 어텐션:**
 - [DISTFLASHATTN](https://arxiv.org/pdf/2310.03294) - 분산 FlashAttention 구현

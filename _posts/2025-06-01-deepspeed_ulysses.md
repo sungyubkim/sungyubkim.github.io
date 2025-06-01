@@ -8,10 +8,10 @@ author_profile: false
 comments: true
 permalink: /blog/deepspeed_ulysses/
 tags:
-  - LLM
-  - Parallelism
-  - Training
-  - Attention
+    - parallelism/attention-heads
+    - attention/sequence-partitioning
+    - systems/all-to-all-communication
+    - training/large-scale
 use_math: true
 toc: true
 toc_label: "Contents"
@@ -32,7 +32,7 @@ toc_sticky: true
 **시퀀스 병렬화 방법론:**
 - [Blockwise RingAttention](../blockwise_ringattention) - 링 토폴로지를 활용한 시퀀스 병렬화
 - [Ring Self-Attention](../ring-self-attention) - 시퀀스 병렬화 종합 분석
-- [USP](https://arxiv.org/pdf/2405.07719) - Ulysses와 Ring을 통합한 시퀀스 병렬화
+- [USP](../usp) - Ulysses와 Ring을 통합한 시퀀스 병렬화
 
 **긴 시퀀스 훈련:**
 - [LoongTrain](https://arxiv.org/pdf/2406.18485) - 2D 어텐션을 활용한 긴 시퀀스 훈련
