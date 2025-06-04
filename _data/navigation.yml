@@ -1,5 +1,3 @@
 main:
   - title: "Blog"
     url: /blog/
-  - title: "Search"
-    url: /search/
