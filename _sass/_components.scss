@@ -56,16 +56,19 @@ ul.task-list input[type="checkbox"] {
 // Profile
 
 .profile {
-  width: 100%;
+  width: 60%;
+  max-width: 200px;
+  margin: 0 auto 1rem;
 
   .more-info {
     margin-bottom: 5px;
     margin-top: 5px;
-    font-family: monospace;
+    font-size: 0.8rem;
 
     p {
-      display: inline-block;
+      display: block;
       margin: 0;
+      white-space: nowrap;
     }
   }
 }
@@ -80,7 +83,7 @@ ul.task-list input[type="checkbox"] {
 
 @media (min-width: 576px) {
   .profile {
-    width: 30%;
+    width: 20%;
 
     .address {
       p {
@@ -242,6 +245,14 @@ ul.task-list input[type="checkbox"] {
 @media only screen and (max-width: 400px) {
   .wechat-modal > img {
     width: 100%;
+  }
+}
+
+// About page content headings
+
+.post article > .clearfix {
+  h2 {
+    margin-top: 2rem;
   }
 }
 

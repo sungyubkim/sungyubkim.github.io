@@ -5,8 +5,8 @@ layout: default
   <header class="post-header">
     <h1 class="post-title">
       {% if site.title == 'blank' %}
-        <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
-        {{ site.last_name }}
+        <span class="font-weight-bold">{{ site.first_name }} {{ site.middle_name }}
+        {{ site.last_name }}</span>
       {% else %}
         {{ site.title }}
       {% endif %}
@@ -42,10 +42,13 @@ layout: default
 
     <!-- News -->
     {% if page.announcements and page.announcements.enabled %}
-      <h2>
-        <a href="{{ '/news/' | relative_url }}" style="color: inherit">news</a>
-      </h2>
-      {% include news.liquid limit=true %}
+      <div class="about-section">
+        <hr>
+        <h2>
+          <a href="{{ '/news/' | relative_url }}" style="color: inherit">News</a>
+        </h2>
+        {% include news.liquid limit=true %}
+      </div>
     {% endif %}
 
     <!-- Selected papers -->

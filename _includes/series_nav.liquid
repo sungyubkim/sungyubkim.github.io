@@ -1,0 +1,42 @@
+{% if page.series %}
+  {% assign series_posts = site.posts | where: "series", page.series | sort: "series_order" %}
+  {% if series_posts.size > 1 %}
+    <div class="series-nav">
+      <div class="series-header">
+        <i class="fa-solid fa-layer-group"></i>
+        <strong>{{ page.series_title | default: page.series }}</strong>
+        <span class="series-count">({{ page.series_order }}/{{ series_posts.size }})</span>
+      </div>
+      <ol class="series-list">
+        {% for post in series_posts %}
+          <li class="series-item{% if post.url == page.url %} series-current{% endif %}">
+            {% if post.url == page.url %}
+              <span class="series-current-label">{{ post.title }}</span>
+            {% else %}
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ol>
+      <div class="series-prev-next">
+        {% for post in series_posts %}
+          {% if post.url == page.url %}
+            {% assign current_idx = forloop.index0 %}
+          {% endif %}
+        {% endfor %}
+        {% if current_idx > 0 %}
+          {% assign prev_idx = current_idx | minus: 1 %}
+          <a href="{{ series_posts[prev_idx].url | relative_url }}" class="series-link series-prev">
+            <i class="fa-solid fa-arrow-left"></i> Prev: {{ series_posts[prev_idx].title }}
+          </a>
+        {% endif %}
+        {% assign next_idx = current_idx | plus: 1 %}
+        {% if next_idx < series_posts.size %}
+          <a href="{{ series_posts[next_idx].url | relative_url }}" class="series-link series-next">
+            Next: {{ series_posts[next_idx].title }} <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% endif %}

@@ -165,3 +165,126 @@
     }
   }
 }
+
+// Social sharing buttons
+.social-sharing {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--global-divider-color);
+
+  .sharing-label {
+    color: var(--global-text-color-light);
+    font-size: 0.875rem;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    color: var(--global-text-color-light);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    font-size: 1rem;
+
+    &:hover {
+      color: var(--global-theme-color);
+    }
+  }
+}
+
+// RSS subscribe CTA
+.rss-subscribe .rss-link {
+  color: var(--global-theme-color);
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Series navigation
+.series-nav {
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+
+  .series-header {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    color: var(--global-text-color);
+
+    i {
+      color: var(--global-theme-color);
+      margin-right: 0.35rem;
+    }
+
+    .series-count {
+      color: var(--global-text-color-light);
+      font-weight: normal;
+      font-size: 0.875rem;
+    }
+  }
+
+  .series-list {
+    margin: 0 0 0.75rem;
+    padding-left: 1.5rem;
+
+    .series-item {
+      padding: 0.2rem 0;
+      font-size: 0.875rem;
+
+      a {
+        color: var(--global-theme-color);
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      &.series-current {
+        font-weight: 600;
+
+        .series-current-label {
+          color: var(--global-text-color);
+        }
+      }
+    }
+  }
+
+  .series-prev-next {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-top: 1px solid var(--global-divider-color);
+    padding-top: 0.75rem;
+
+    .series-link {
+      font-size: 0.8125rem;
+      color: var(--global-theme-color);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      i {
+        font-size: 0.75rem;
+      }
+    }
+
+    .series-next {
+      margin-left: auto;
+    }
+  }
+}

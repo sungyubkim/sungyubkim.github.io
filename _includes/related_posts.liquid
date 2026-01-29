@@ -34,3 +34,13 @@
   <p class="mb-2" style="margin-top: 1.5rem !important">Subscribe to be notified of future articles:</p>
   {% include newsletter.liquid left=true %}
 {% endif %}
+
+<div class="rss-subscribe" style="margin-top: 1.5rem;">
+  <p class="mb-2">
+    <i class="fa-solid fa-rss"></i>
+    Stay updated &mdash;
+    <a href="{{ '/feed.xml' | relative_url }}" class="rss-link" target="_blank" rel="noopener noreferrer">
+      subscribe via RSS
+    </a>
+  </p>
+</div>

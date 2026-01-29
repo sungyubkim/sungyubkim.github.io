@@ -58,6 +58,8 @@ layout: default
     </p>
   </header>
 
+  {% include series_nav.liquid %}
+
   <article class="post-content">
     {% if page.toc and page.toc.beginning %}
       <div id="table-of-contents">
@@ -69,6 +71,12 @@ layout: default
       {{ content }}
     </div>
   </article>
+
+  {% include series_nav.liquid %}
+
+  {% unless page.no_share %}
+    {% include social_sharing.liquid %}
+  {% endunless %}
 
   {% if page.citation %}
     {% include citation.liquid %}
@@ -91,6 +99,11 @@ layout: default
     {% include disqus.liquid %}
   {% endif %}
   {% if site.giscus and page.giscus_comments %}
+    <div class="comment-cta" style="max-width: {{ site.max_width }}; margin: 0 auto;">
+      <br><hr><br>
+      <h2 class="text-3xl font-semibold mb-4">Leave a Comment</h2>
+      <p class="mb-2">Found this useful or have questions? Sign in with GitHub to join the conversation.</p>
+    </div>
     {% include giscus.liquid %}
   {% endif %}
 </div>

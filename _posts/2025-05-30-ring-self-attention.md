@@ -6,9 +6,13 @@ layout: post
 permalink: /blog/ring-self-attention/
 description: "Ring Self-Attention enables sequence parallelism across GPUs using ring communication patterns for distributed attention."
 tags: sequence-parallelism ring-attention distributed-training
+thumbnail: assets/img/blog/ring-self-attention.png
+series: sequence-parallelism
+series_order: 1
+series_title: "Sequence Parallelism Series"
 related_posts: true
-disqus_comments: true
-giscus_comments: false
+disqus_comments: false
+giscus_comments: true
 toc:
   sidebar: left
 ---

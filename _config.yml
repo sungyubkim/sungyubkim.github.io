@@ -51,7 +51,7 @@ max_width: 930px
 
 serve_og_meta: true
 serve_schema_org: true
-og_image:
+og_image: https://sungyubkim.github.io/assets/img/prof_pic.png
 
 # -----------------------------------------------------------------------------
 # Social integration
@@ -59,6 +59,7 @@ og_image:
 
 github_username: sungyubkim
 twitter_username: SungyubK
+x_username: SungyubK
 linkedin_username: sung-yub-kim-0a82a1264
 scholar_userid: m2rhgrkAAAAJ
 
@@ -66,8 +67,8 @@ scholar_userid: m2rhgrkAAAAJ
 # Analytics and search engine verification
 # -----------------------------------------------------------------------------
 
-google_analytics:
-google_site_verification:
+google_analytics: G-FYM7PJVPZQ
+google_site_verification: hYWuDwZprYGH99K2LlUqbJtUyX_lU6iw_n7SvSqxMIE
 bing_site_verification:
 
 # -----------------------------------------------------------------------------
@@ -87,8 +88,23 @@ related_blog_posts:
   enabled: true
   max_related: 5
 
-# Disqus comments
-disqus_shortname: sungyubkim
+# Disqus comments (disabled — migrated to Giscus)
+# disqus_shortname: sungyubkim
+
+# Giscus comments (GitHub Discussions)
+giscus:
+  repo: sungyubkim/sungyubkim.github.io
+  repo_id: "R_kgDOI3ZsZg"
+  category: Comments
+  category_id: "DIC_kwDOI3ZsZs4C1mVV"
+  mapping: pathname
+  strict: "0"
+  reactions_enabled: "1"
+  emit_metadata: "0"
+  input_position: bottom
+  light_theme: light
+  dark_theme: dark_dimmed
+  lang: ko
 
 # External sources
 external_sources:
@@ -327,11 +343,11 @@ lazy_loading_images: true
 # Optional Features
 # -----------------------------------------------------------------------------
 
-enable_google_analytics: false
+enable_google_analytics: true
 enable_cronitor_analytics: false
 enable_pirsch_analytics: false
 enable_openpanel_analytics: false
-enable_google_verification: false
+enable_google_verification: true
 enable_bing_verification: false
 enable_masonry: true
 enable_math: true

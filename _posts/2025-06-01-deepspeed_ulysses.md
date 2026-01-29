@@ -6,9 +6,13 @@ layout: post
 permalink: /blog/deepspeed_ulysses/
 description: "DeepSpeed-Ulysses achieves efficient sequence parallelism via all-to-all communication for 1M+ token training."
 tags: sequence-parallelism distributed-training
+thumbnail: assets/img/blog/deepspeed-ulysses.png
+series: sequence-parallelism
+series_order: 3
+series_title: "Sequence Parallelism Series"
 related_posts: true
-disqus_comments: true
-giscus_comments: false
+disqus_comments: false
+giscus_comments: true
 toc:
   sidebar: left
 ---

@@ -6,9 +6,13 @@ layout: post
 permalink: /blog/blockwise_ringattention/
 description: "Blockwise RingAttention solves the memory bottleneck for processing very long sequences by combining blockwise computation with ring communication."
 tags: sequence-parallelism ring-attention memory-efficiency distributed-training
+thumbnail: assets/img/blog/blockwise-ringattention.png
+series: sequence-parallelism
+series_order: 2
+series_title: "Sequence Parallelism Series"
 related_posts: true
-disqus_comments: true
-giscus_comments: false
+disqus_comments: false
+giscus_comments: true
 toc:
   sidebar: left
 ---
