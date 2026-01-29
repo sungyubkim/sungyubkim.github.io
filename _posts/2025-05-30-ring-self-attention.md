@@ -2,21 +2,15 @@
 title: "Ring Self-Attention"
 date: 2025-05-30
 last_modified_at: 2025-05-30
-type: posts
-layout: single
-author_profile: false
-comments: true
+layout: post
 permalink: /blog/ring-self-attention/
-tags:
-    - parallelism/sequence-distribution
-    - attention/ring-communication
-    - systems/distributed-training
-    - training/4d-parallelism
-use_math: true
-toc: true
-toc_label: "Contents"
-toc_icon: "file-text"
-toc_sticky: true
+description: "Ring Self-Attention enables sequence parallelism across GPUs using ring communication patterns for distributed attention."
+tags: sequence-parallelism ring-attention distributed-training
+related_posts: true
+disqus_comments: true
+giscus_comments: false
+toc:
+  sidebar: left
 ---
 
 # TL;DR
@@ -35,9 +29,9 @@ toc_sticky: true
 # Related Papers
 
 **시퀀스 병렬화 발전:**
-- [Blockwise RingAttention](../blockwise_ringattention) - 링 기반 시퀀스 병렬화의 현대적 발전
+- [Blockwise RingAttention](/blog/blockwise_ringattention/) - 링 기반 시퀀스 병렬화의 현대적 발전
 - [DeepSpeed Ulysses](https://arxiv.org/pdf/2309.14509) - 시퀀스 병렬화의 실용적 구현
-- [USP](../usp) - 통합 시퀀스 병렬화 프레임워크
+- [USP](/blog/usp/) - 통합 시퀀스 병렬화 프레임워크
 
 **분산 어텐션:**
 - [DISTFLASHATTN](https://arxiv.org/pdf/2310.03294) - 분산 FlashAttention 구현
@@ -45,9 +39,9 @@ toc_sticky: true
 - [LoongTrain](https://arxiv.org/pdf/2406.18485) - 2D 어텐션 병렬화
 
 **병렬화 통합:**
-- [Tensor Parallelism](../tp) - 텐서 병렬화와의 결합
-- [GPipe](../pp) - 파이프라인 병렬화와의 통합
-- [Reducing Activation Recomputation in Large Transformer Models](../sp) - 메모리 효율적인 병렬 훈련
+- [Tensor Parallelism](/blog/tp/) - 텐서 병렬화와의 결합
+- [GPipe](/blog/pp/) - 파이프라인 병렬화와의 통합
+- [Reducing Activation Recomputation in Large Transformer Models](/blog/sp/) - 메모리 효율적인 병렬 훈련
 
 **긴 컨텍스트 처리:**
 - [Context Parallelism for Scalable Million-Token Inference](https://arxiv.org/pdf/2411.01783) - 추론 시 시퀀스 병렬화

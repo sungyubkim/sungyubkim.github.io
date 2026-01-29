@@ -2,21 +2,15 @@
 title: "DeepSpeed Ulysses"
 date: 2025-06-01
 last_modified_at: 2025-06-01
-type: posts
-layout: single
-author_profile: false
-comments: true
+layout: post
 permalink: /blog/deepspeed_ulysses/
-tags:
-    - parallelism/attention-heads
-    - attention/sequence-partitioning
-    - systems/all-to-all-communication
-    - training/large-scale
-use_math: true
-toc: true
-toc_label: "Contents"
-toc_icon: "file-text"
-toc_sticky: true
+description: "DeepSpeed-Ulysses achieves efficient sequence parallelism via all-to-all communication for 1M+ token training."
+tags: sequence-parallelism distributed-training
+related_posts: true
+disqus_comments: true
+giscus_comments: false
+toc:
+  sidebar: left
 ---
 
 # TL;DR
@@ -30,9 +24,9 @@ toc_sticky: true
 # Related Papers
 
 **시퀀스 병렬화 방법론:**
-- [Blockwise RingAttention](../blockwise_ringattention) - 링 토폴로지를 활용한 시퀀스 병렬화
-- [Ring Self-Attention](../ring-self-attention) - 시퀀스 병렬화 종합 분석
-- [USP](../usp) - Ulysses와 Ring을 통합한 시퀀스 병렬화
+- [Blockwise RingAttention](/blog/blockwise_ringattention/) - 링 토폴로지를 활용한 시퀀스 병렬화
+- [Ring Self-Attention](/blog/ring-self-attention/) - 시퀀스 병렬화 종합 분석
+- [USP](/blog/usp/) - Ulysses와 Ring을 통합한 시퀀스 병렬화
 
 **긴 시퀀스 훈련:**
 - [LoongTrain](https://arxiv.org/pdf/2406.18485) - 2D 어텐션을 활용한 긴 시퀀스 훈련
@@ -43,8 +37,8 @@ toc_sticky: true
 - [Striped Attention](https://arxiv.org/pdf/2311.09431) - 효율적인 어텐션 분배 패턴
 
 **시스템 통합:**
-- [Tensor Parallelism](../tp) - 텐서 병렬화와의 결합
-- [Reducing Activation Recomputation in Large Transformer Models](../sp) - 메모리 효율적인 훈련
+- [Tensor Parallelism](/blog/tp/) - 텐서 병렬화와의 결합
+- [Reducing Activation Recomputation in Large Transformer Models](/blog/sp/) - 메모리 효율적인 훈련
 
 ---
 

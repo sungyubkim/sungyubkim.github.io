@@ -2,13 +2,13 @@
 title: "홈페이지 관리 🏠"
 date: 2024-02-21
 last_modified_at: 2024-02-21
-type: posts
-layout: single
-author_profile: false
-comments: true
+layout: post
 permalink: /blog/homepage-update/
-tags:
-    - github-pages
+description: "Notes on managing and updating this Jekyll-based GitHub Pages homepage."
+tags: github-pages
+related_posts: true
+disqus_comments: true
+giscus_comments: false
 ---
 
 출처: <https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll>

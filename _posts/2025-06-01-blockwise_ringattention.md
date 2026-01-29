@@ -2,21 +2,15 @@
 title: "Blockwise RingAttention"
 date: 2025-06-01
 last_modified_at: 2025-06-01
-type: posts
-layout: single
-author_profile: false
-comments: true
+layout: post
 permalink: /blog/blockwise_ringattention/
-tags:
-    - parallelism/sequence-distribution
-    - attention/ring-communication
-    - memory/long-context
-    - systems/distributed-computation
-use_math: true
-toc: true
-toc_label: "Contents"
-toc_icon: "file-text"
-toc_sticky: true
+description: "Blockwise RingAttention solves the memory bottleneck for processing very long sequences by combining blockwise computation with ring communication."
+tags: sequence-parallelism ring-attention memory-efficiency distributed-training
+related_posts: true
+disqus_comments: true
+giscus_comments: false
+toc:
+  sidebar: left
 ---
 
 # TL;DR
@@ -47,13 +41,13 @@ toc_sticky: true
 - [DeepSpeed Ulysses](https://arxiv.org/pdf/2309.14509) - 어텐션 분산을 활용한 시퀀스 병렬처리
 
 **긴 시퀀스 훈련:**
-- [Ring Self-Attention](../ring-self-attention) - 시퀀스 병렬처리에 대한 종합적 관점
+- [Ring Self-Attention](/blog/ring-self-attention/) - 시퀀스 병렬처리에 대한 종합적 관점
 - [Context Parallelism for Scalable Million-Token Inference](https://arxiv.org/pdf/2411.01783) - 추론을 위한 컨텍스트 레벨 병렬처리
 - [LoongTrain](https://arxiv.org/pdf/2406.18485) - 매우 긴 시퀀스를 위한 2D 어텐션 병렬처리
 
 **메모리 최적화:**
-- [Reducing Activation Recomputation in Large Transformer Models](../sp) - 메모리 효율적인 훈련 기법
-- [USP](../usp) - Ring과 Ulysses 방법을 결합한 통합 접근법
+- [Reducing Activation Recomputation in Large Transformer Models](/blog/sp/) - 메모리 효율적인 훈련 기법
+- [USP](/blog/usp/) - Ring과 Ulysses 방법을 결합한 통합 접근법
 
 ---
 
