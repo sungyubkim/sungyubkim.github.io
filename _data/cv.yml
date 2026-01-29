@@ -1,0 +1,68 @@
+- title: General Information
+  type: map
+  contents:
+    - name: Full Name
+      value: Sung-Yub Kim
+    - name: Languages
+      value: Korean (native), English (fluent)
+
+- title: Education
+  type: time_table
+  contents:
+    - title: Ph.D. in Graduate School of AI
+      institution: Korea Advanced Institute of Science and Technology (KAIST)
+      year: 2019 - 2024
+      description:
+        - Advisor. Prof. Eunho Yang
+        - Research on explainability, generalization, and adaptation of deep learning models
+
+    - title: M.S. in Industrial Engineering (Mathematical Optimization)
+      institution: Seoul National University (SNU)
+      year: 2017 - 2019
+      description:
+        - Advisor. Prof. Songhwai Oh
+        - Research on reinforcement learning and optimization
+
+    - title: B.S. in Industrial Engineering & Mathematical Science
+      institution: Seoul National University (SNU)
+      year: 2013 - 2017
+
+- title: Experience
+  type: time_table
+  contents:
+    - title: Research Scientist
+      institution: AI Center, Samsung Electronics
+      year: 2024 - Present
+      description:
+        - LLM team
+        - Research on large language models and foundation models
+
+- title: Publications
+  type: list
+  contents:
+    - "[7] LANTERN: Accelerating Visual Autoregressive Models with Relaxed Speculative Decoding (ICLR 2025, Co-Correspondence Author)"
+    - "[6] A Simple Remedy for Dataset Bias via Self-Influence: A Mislabeled Sample Perspective (NeurIPS 2024)"
+    - "[5] TTD: Text-Tag Self-Distillation Enhancing Image-Text Alignment in CLIP to Alleviate Single Tag Bias (ECCV 2024)"
+    - "[4] GEX: A flexible method for approximating influence via Geometric Ensemble (NeurIPS 2023, 1st Author)"
+    - "[3] RGE: A Repulsive Graph Rectification for Node Classification via Influence (ICML 2023, Co-1st Author)"
+    - "[2] Scale-invariant Bayesian Neural Networks with Connectivity Tangent Kernel (ICLR 2023 Spotlight, 1st Author)"
+    - "[1] Generalized Tsallis Entropy Reinforcement Learning and Its Application to Soft Mobile Robots (RSS 2020)"
+
+- title: Research Projects (in school)
+  type: time_table
+  contents:
+    - title: Autonomous Intelligent Digital Companion Framework and Application
+      institution: Korea Electronics Technology Institute
+      year: 2019 - 2021
+
+    - title: A study on adaptive point and regional OOD detection techniques based on sub-task generation
+      institution: Samsung
+      year: 2020 - 2023
+
+    - title: A machine learning and statistical inference framework for explainable artificial intelligence
+      institution: Institute of Information & Communications Technology Planning & Evaluation (IITP)
+      year: 2022 - 2023
+
+    - title: A Study on Optimization and Network Interpretation Method for Large-Scale Machine Learning
+      institution: National Research Foundation of Korea (NRF) grant funded by the Korea government (MSIT)
+      year: 2022 - 2023
