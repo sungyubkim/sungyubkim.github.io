@@ -3,12 +3,12 @@
 # -----------------------------------------------------------------------------
 
 title: blank # full name will be used instead
-first_name: Sung-Yub
+first_name: Sung-Yub Kim
 middle_name:
-last_name: Kim
+last_name:
 contact_note:
 description: > # the ">" symbol means to ignore newlines until next key
-  Research Scientist @ AI Center, Samsung Electronics.
+  Staff Engineer @ AI Center, Samsung Electronics.
   Personal academic website with publications, blog posts, and CV.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.

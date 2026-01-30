@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: Research Scientist @ <a href="https://www.sait.samsung.co.kr/">AI Center, Samsung Electronics</a>
+subtitle: Staff Engineer @ <a href="https://www.sait.samsung.co.kr/">AI Center, Samsung Electronics</a>
 
 profile:
   align: right
@@ -38,8 +38,8 @@ I'm a researcher in the LLM team @ **AI Center, Samsung Electronics**. I receive
 
 | Period | Role | Organization |
 |--------|------|-------------|
-| 2023 – Present | Research Scientist | AI Center, Samsung Electronics |
-| 2018 – 2023 | Ph.D. in Machine Learning | KAIST |
+| 2024 – Present | Staff Engineer | AI Center, Samsung Electronics |
+| 2019 – 2024 | Ph.D. in Machine Learning | KAIST |
 
 ## Collaboration
 

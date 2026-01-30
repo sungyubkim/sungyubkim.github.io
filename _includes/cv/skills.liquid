@@ -10,7 +10,7 @@
       {% endif %}
       <strong>
         {{- entry.name -}}
-        {%- if entry.level %} ({{ entry.level }}){% endif %}:</strong
+        {%- if entry.level != blank %} ({{ entry.level }}){% endif %}:</strong
       >
       {% if entry.keywords %}
         {% for keyword in entry.keywords %}

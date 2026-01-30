@@ -1,13 +1,14 @@
 {
   "basics": {
     "name": "Sung-Yub Kim",
-    "label": "Research Scientist",
+    "label": "Staff Engineer",
     "image": "",
     "email": "sungyub.kim@mli.kaist.ac.kr",
-    "summary": "Research Scientist at AI Center, Samsung Electronics. Focused on Foundation models, LLMs, and explainability.",
+    "summary": "Staff Engineer at AI Center, Samsung Electronics. Focused on Foundation models, LLMs, and explainability.",
     "location": {
       "city": "Seoul",
-      "countryCode": "KR"
+      "countryCode": "KR",
+      "region": "South Korea"
     },
     "profiles": [
       {
@@ -20,12 +21,16 @@
   "work": [
     {
       "name": "AI Center, Samsung Electronics",
-      "position": "Research Scientist",
+      "position": "Staff Engineer",
       "location": "Seoul, South Korea",
-      "startDate": "2024-03-01",
+      "startDate": "2024-02-01",
       "endDate": "",
-      "summary": "LLM team - Research on large language models and foundation models",
-      "highlights": []
+      "summary": "Post-hoc training team @ Language Intelligence PJT., Core Algorithm Lab, AI Center.",
+      "highlights": [
+        "Improved the Instruction-Following capacity of LLM (≥ 70B) with DPO & Synthetic Data Generation.",
+        "Improved the reasoning capacity of LLM (≥ 235B) with RLVR & Dataset Pruning.",
+        "Optimized training (FSDPs, NeMo) & inference (vLLM, SGLang) frameworks for LLMs in HPC (≥ 256 GPUs)."
+      ]
     }
   ],
   "education": [
@@ -66,7 +71,7 @@
   "skills": [
     {
       "name": "Machine Learning",
-      "level": "Expert",
+      "level": "",
       "icon": "fa-solid fa-hashtag",
       "keywords": [
         "Foundation Models",
@@ -75,25 +80,47 @@
         "Loss Landscape",
         "Distributed Training"
       ]
+    },
+    {
+      "name": "Coding",
+      "level": "",
+      "icon": "fa-solid fa-code",
+      "keywords": [
+        "Python",
+        "R",
+        "LaTeX"
+      ]
+    },
+    {
+      "name": "Distributed Computing",
+      "level": "",
+      "icon": "fa-solid fa-server",
+      "keywords": [
+        "FSDP",
+        "NeMo",
+        "vLLM",
+        "SGLang",
+        "HPC"
+      ]
     }
   ],
   "volunteer": [],
   "awards": [],
-  "certificates": [],
+  "certificates": [
+    {
+      "name": "Model Parallelism: Building and Deploying Large Neural Networks",
+      "issuer": "NVIDIA",
+      "url": ""
+    },
+    {
+      "name": "Fundamentals of Accelerated Computing with CUDA Python",
+      "issuer": "NVIDIA",
+      "url": ""
+    }
+  ],
   "publications": [],
   "projects": [],
   "interests": [],
   "references": [],
-  "languages": [
-    {
-      "language": "Korean",
-      "fluency": "Native speaker",
-      "icon": ""
-    },
-    {
-      "language": "English",
-      "fluency": "Fluent",
-      "icon": ""
-    }
-  ]
+  "languages": []
 }

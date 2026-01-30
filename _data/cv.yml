@@ -14,13 +14,15 @@
       year: 2019 - 2024
       description:
         - Advisor. Prof. Eunho Yang
+        - "Thesis: Post-hoc analysis techniques and their utilization of pre-trained Neural Networks"
         - Research on explainability, generalization, and adaptation of deep learning models
 
     - title: M.S. in Industrial Engineering (Mathematical Optimization)
       institution: Seoul National University (SNU)
       year: 2017 - 2019
       description:
-        - Advisor. Prof. Songhwai Oh
+        - Advisor. Prof. Sung-Pil Hong (Management Science & Optimization Lab.)
+        - "Thesis: Train rescheduling via power regret matching algorithm"
         - Research on reinforcement learning and optimization
 
     - title: B.S. in Industrial Engineering & Mathematical Science
@@ -30,12 +32,14 @@
 - title: Experience
   type: time_table
   contents:
-    - title: Research Scientist
+    - title: Staff Engineer
       institution: AI Center, Samsung Electronics
       year: 2024 - Present
       description:
-        - LLM team
-        - Research on large language models and foundation models
+        - "Post-hoc training team @ Language Intelligence PJT., Core Algorithm Lab, AI Center."
+        - "Improved the Instruction-Following capacity of LLM (≥ 70B) with DPO & Synthetic Data Generation."
+        - "Improved the reasoning capacity of LLM (≥ 235B) with RLVR & Dataset Pruning."
+        - "Optimized training (FSDPs, NeMo) & inference (vLLM, SGLang) frameworks for LLMs in HPC (≥ 256 GPUs)."
 
 - title: Publications
   type: list
@@ -52,7 +56,7 @@
   type: time_table
   contents:
     - title: Autonomous Intelligent Digital Companion Framework and Application
-      institution: Korea Electronics Technology Institute
+      institution: Institute of Information & Communications Technology Planning & Evaluation (IITP)
       year: 2019 - 2021
 
     - title: A study on adaptive point and regional OOD detection techniques based on sub-task generation
@@ -61,8 +65,14 @@
 
     - title: A machine learning and statistical inference framework for explainable artificial intelligence
       institution: Institute of Information & Communications Technology Planning & Evaluation (IITP)
-      year: 2022 - 2023
+      year: 2022 - 2024
 
     - title: A Study on Optimization and Network Interpretation Method for Large-Scale Machine Learning
       institution: National Research Foundation of Korea (NRF) grant funded by the Korea government (MSIT)
       year: 2022 - 2023
+
+- title: Skills & Interests
+  type: list
+  contents:
+    - "Coding: Python, R, LaTeX"
+    - "Distributed Computing: NVIDIA Certificates — Model Parallelism: Building and Deploying Large Neural Networks / Fundamentals of Accelerated Computing with CUDA Python"
