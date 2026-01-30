@@ -202,30 +202,32 @@
 
 {% if site.enable_math %}
   <!-- MathJax -->
+  {% unless page.pseudocode %}
+    <script defer src="{{ '/assets/js/mathjax-setup.js' | relative_url | bust_file_cache }}"></script>
+  {% else %}
+    <script defer src="{{ '/assets/js/pseudocode-setup.js' | relative_url | bust_file_cache }}"></script>
+  {% endunless %}
   <script
     defer
     type="text/javascript"
     id="MathJax-script"
     src="{{ site.third_party_libraries.mathjax.url.js }}"
-    integrity="{{ site.third_party_libraries.mathjax.integrity.js }}"
     crossorigin="anonymous"
   ></script>
-  {% unless page.pseudocode %}
-    <script src="{{ '/assets/js/mathjax-setup.js' | relative_url | bust_file_cache }}"></script>
+  {% if page.pseudocode %}
     <script
       defer
-      src="{{ site.third_party_libraries.polyfill.url.js }}"
-      crossorigin="anonymous"
-    ></script>
-  {% else %}
-    <script src="{{ '/assets/js/pseudocode-setup.js' | relative_url | bust_file_cache }}"></script>
-    <script
       type="text/javascript"
       src="{{ site.third_party_libraries.pseudocode.url.js }}"
       integrity="{{ site.third_party_libraries.pseudocode.integrity.js }}"
       crossorigin="anonymous"
     ></script>
-  {% endunless %}
+  {% endif %}
+  <script
+    defer
+    src="{{ site.third_party_libraries.polyfill.url.js }}"
+    crossorigin="anonymous"
+  ></script>
 {% endif %}
 
 {% if site.enable_google_analytics %}

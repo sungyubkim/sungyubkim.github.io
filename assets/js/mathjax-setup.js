@@ -1,10 +1,20 @@
 window.MathJax = {
+  loader: {
+    load: ["[tex]/amscd"],
+  },
   tex: {
     tags: "ams",
+    packages: { "[+]": ["amscd"] },
     inlineMath: [
       ["$", "$"],
       ["\\(", "\\)"],
     ],
+    displayMath: [
+      ["$$", "$$"],
+      ["\\[", "\\]"],
+    ],
+    processEscapes: true,
+    processEnvironments: true,
   },
   options: {
     renderActions: {
