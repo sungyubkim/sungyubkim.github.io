@@ -15,7 +15,7 @@ footer_text: >
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
 keywords: machine-learning, deep-learning, llm, foundation-models, research
 lang: en
-icon: "\U0001F9E0" # brain emoji as favicon
+icon: "\U0001F99C" # parrot emoji as favicon
 
 url: https://sungyubkim.github.io
 baseurl: # leave blank for root domain
