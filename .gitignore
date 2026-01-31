@@ -33,3 +33,7 @@ CLAUDE.md
 # Docker
 docker-compose.yml
 Dockerfile
+
+# Python
+.venv/
+scripts/
