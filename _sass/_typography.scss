@@ -35,6 +35,60 @@ table {
   }
 }
 
+// Academic / LaTeX booktabs-style table for blog posts
+#markdown-content > table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-variant-numeric: tabular-nums;
+
+  border-top: 2px solid var(--global-text-color);
+  border-bottom: 2px solid var(--global-text-color);
+
+  td,
+  th {
+    border-left: none;
+    border-right: none;
+    padding: 0.5rem 1rem;
+    text-align: left;
+  }
+
+  thead th {
+    font-weight: 600;
+    border-bottom: 1.5px solid var(--global-text-color);
+  }
+
+  tbody tr {
+    border-bottom: 0.5px solid var(--global-divider-color);
+  }
+
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+
+  html[data-theme="dark"] & tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+}
+
+@media (max-width: 768px) {
+  #markdown-content > table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    td,
+    th {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.875rem;
+    }
+  }
+}
+
 a,
 table.table a {
   color: var(--global-theme-color);
