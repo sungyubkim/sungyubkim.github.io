@@ -4,7 +4,7 @@ date: 2025-05-30
 last_modified_at: 2025-05-30
 layout: post
 permalink: /blog/ring-self-attention/
-description: "Ring Self-Attention enables sequence parallelism across GPUs using ring communication patterns for distributed attention."
+description: "Ring 통신 패턴을 활용한 GPU 간 시퀀스 병렬화로 분산 어텐션을 수행하는 Ring Self-Attention."
 tags: sequence-parallelism ring-attention distributed-training
 thumbnail: assets/img/blog/ring-self-attention.png
 series: sequence-parallelism

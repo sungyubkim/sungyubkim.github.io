@@ -4,7 +4,7 @@ date: 2024-02-21
 last_modified_at: 2024-02-21
 layout: post
 permalink: /blog/homepage-update/
-description: "Notes on managing and updating this Jekyll-based GitHub Pages homepage."
+description: "Jekyll 기반 GitHub Pages 학술 웹사이트의 관리 및 업데이트 방법 정리."
 tags: github-pages
 thumbnail: assets/img/blog/homepage-update.png
 related_posts: true

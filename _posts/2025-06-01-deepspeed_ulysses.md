@@ -4,7 +4,7 @@ date: 2025-06-01
 last_modified_at: 2025-06-01
 layout: post
 permalink: /blog/deepspeed_ulysses/
-description: "DeepSpeed-Ulysses achieves efficient sequence parallelism via all-to-all communication for 1M+ token training."
+description: "All-to-all 통신을 통한 효율적 시퀀스 병렬화로 100만 토큰 이상의 학습을 가능케 하는 DeepSpeed-Ulysses."
 tags: sequence-parallelism distributed-training
 thumbnail: assets/img/blog/deepspeed-ulysses.png
 series: sequence-parallelism

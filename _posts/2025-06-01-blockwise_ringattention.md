@@ -4,7 +4,7 @@ date: 2025-06-01
 last_modified_at: 2025-06-01
 layout: post
 permalink: /blog/blockwise_ringattention/
-description: "Blockwise RingAttention solves the memory bottleneck for processing very long sequences by combining blockwise computation with ring communication."
+description: "블록 단위 계산과 링 통신을 결합하여 초장문 시퀀스 처리의 메모리 병목을 해결하는 Blockwise RingAttention."
 tags: sequence-parallelism ring-attention memory-efficiency distributed-training
 thumbnail: assets/img/blog/blockwise-ringattention.png
 series: sequence-parallelism
