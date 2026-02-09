@@ -23,6 +23,8 @@ toc:
 > 학습 프레임워크(Megatron-LM, nanotron, DeepSpeed, torchtitan)와 추론 프레임워크(vLLM, SGLang)는 동일한 이론적 기반 위에서 서로 다른 최적화 철학을 보여줍니다.
 > Megatron-LM의 f/g 켤레 연산자 패러다임은 거의 모든 프레임워크에 영향을 주었으나, 각자의 요구사항에 맞게 변형되었습니다.
 > 핵심 차이점: 학습 프레임워크는 그래디언트 통신 최적화에, 추론 프레임워크는 weight loading과 레이턴시 최소화에 집중합니다.
+>
+> 이 글은 구현 세부사항뿐 아니라 **각 프레임워크의 API 사용법** (CLI, Python, Config)도 함께 다루어, 실제 적용을 위한 실용적 가이드를 제공합니다.
 
 ---
 
@@ -71,6 +73,41 @@ toc:
 **핵심 파일:** `megatron/core/tensor_parallel/`
 
 Megatron-LM은 TP의 원조답게 가장 정교한 구현을 제공합니다. 핵심은 **f/g 켤레 연산자**입니다.
+
+### Quick Start
+
+**CLI:**
+```bash
+# 8-way Tensor Parallelism
+torchrun --nproc_per_node=8 pretrain_gpt.py \
+    --tensor-model-parallel-size 8 \
+    --pipeline-model-parallel-size 1 \
+    --num-layers 32 \
+    --hidden-size 4096 \
+    --num-attention-heads 32
+```
+
+**Python API:**
+```python
+from megatron.core import parallel_state
+
+# 분산 환경 초기화
+parallel_state.initialize_model_parallel(
+    tensor_model_parallel_size=8,
+    pipeline_model_parallel_size=1,
+    virtual_pipeline_model_parallel_size=None,
+)
+
+# TP 그룹 조회
+tp_group = parallel_state.get_tensor_model_parallel_group()
+tp_rank = parallel_state.get_tensor_model_parallel_rank()
+tp_world_size = parallel_state.get_tensor_model_parallel_world_size()
+```
+
+**주의사항:**
+- `CUDA_DEVICE_MAX_CONNECTIONS=1` 환경 변수 필수 (비동기 통신 순서 보장)
+- `--sequence-parallel` 플래그로 Sequence Parallel 활성화 가능
+- TP 크기는 attention head 수의 약수여야 함
 
 ### 핵심 연산자 4종 세트
 
@@ -258,6 +295,55 @@ class _VocabParallelCrossEntropy(torch.autograd.Function):
 
 nanotron은 HuggingFace에서 개발한 분산 학습 라이브러리로, Megatron-LM의 설계를 더 모듈러하게 재구성했습니다.
 
+### Quick Start
+
+**CLI:**
+```bash
+# YAML 설정 파일 기반 실행
+CUDA_DEVICE_MAX_CONNECTIONS=1 torchrun --nproc_per_node=8 \
+    run_train.py --config-file configs/llama_tp8.yaml
+```
+
+**YAML Config:**
+```yaml
+# configs/llama_tp8.yaml
+parallelism:
+  dp: 1
+  pp: 1
+  tp: 8                    # Tensor Parallelism 크기
+  pp_engine: 1f1b
+  tp_mode: ALL_REDUCE      # 또는 REDUCE_SCATTER
+  tp_linear_async_communication: true
+  recompute_layer: false
+```
+
+**Python API:**
+```python
+from nanotron.config import ParallelismArgs
+from nanotron.parallel.context import ParallelContext
+
+# 병렬화 설정
+parallelism = ParallelismArgs(
+    dp=1,
+    pp=1,
+    tp=8,
+    tp_mode="ALL_REDUCE",  # 또는 "REDUCE_SCATTER"
+    tp_linear_async_communication=True,
+)
+
+# ParallelContext 초기화
+parallel_context = ParallelContext(
+    tensor_parallel_size=parallelism.tp,
+    pipeline_parallel_size=parallelism.pp,
+    data_parallel_size=parallelism.dp,
+)
+```
+
+**주의사항:**
+- `tp_mode`: `ALL_REDUCE`(표준 TP) vs `REDUCE_SCATTER`(SP 결합용)
+- `tp_recompute_allgather=True`로 메모리 절약 가능 (계산 증가 트레이드오프)
+- YAML 설정이 권장되는 주요 인터페이스
+
 ### 두 가지 TP 모드: ALL_REDUCE vs REDUCE_SCATTER
 
 nanotron의 가장 큰 특징은 **명시적인 2가지 TP 모드**를 지원한다는 점입니다:
@@ -410,6 +496,55 @@ self.ep_pg         # Expert Parallel group (MoE용)
 
 DeepSpeed는 **자동 TP 적용**에 초점을 맞춥니다. 사용자가 모델 코드를 수정하지 않아도 TP를 적용할 수 있습니다.
 
+### Quick Start
+
+**CLI:**
+```bash
+# DeepSpeed launcher로 실행
+deepspeed --num_gpus=8 train.py \
+    --deepspeed \
+    --deepspeed_config ds_config.json
+```
+
+**JSON Config:**
+```json
+{
+  "train_batch_size": 32,
+  "tensor_parallel": {
+    "enabled": true,
+    "autotp_size": 8,
+    "tp_grain_size": 64
+  },
+  "fp16": {
+    "enabled": true
+  }
+}
+```
+
+**Python API:**
+```python
+import deepspeed
+from transformers import AutoModelForCausalLM
+
+# 모델 로드
+model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-hf")
+
+# DeepSpeed 초기화 (AutoTP 자동 적용)
+model_engine, optimizer, _, _ = deepspeed.initialize(
+    model=model,
+    config="ds_config.json",
+)
+
+# 또는 수동으로 TP 적용
+from deepspeed.module_inject import auto_tp
+model = auto_tp.AutoTP(model, tp_size=8)
+```
+
+**주의사항:**
+- `autotp_size`: 자동 TP 적용 시 분할 크기
+- `tp_grain_size`: 불균등 vocab 분할 시 최소 단위
+- HuggingFace Transformers 모델에 자동 적용 가능
+
 ### AutoTP GEM 리스트 탐지 로직
 
 GEM(General Embedding/Matrix) 리스트는 all-reduce가 필요한 레이어를 자동 탐지합니다:
@@ -507,6 +642,55 @@ def get_shard_size(total_size, mp_size, name=None, rank=None):
 **핵심 파일:** `torchtitan/distributed/`
 
 torchtitan은 PyTorch의 **DTensor**와 **DeviceMesh** API를 사용하여 TP를 구현합니다. 커스텀 autograd 함수 없이 선언적으로 병렬화를 정의합니다.
+
+### Quick Start
+
+**CLI:**
+```bash
+# TOML 설정 파일 기반 실행
+CONFIG_FILE="./torchtitan/models/llama3/train_configs/llama3_8b.toml" \
+    ./run_train.sh
+```
+
+**TOML Config:**
+```toml
+[parallelism]
+tensor_parallel_degree = 8
+enable_loss_parallel = true
+pipeline_parallel_degree = 1
+data_parallel_shard_degree = -1  # auto
+data_parallel_replicate_degree = 1
+context_parallel_degree = 1
+
+[training]
+enable_async_tensor_parallel = true
+```
+
+**Python API:**
+```python
+from torchtitan.distributed import ParallelDims
+from torch.distributed.device_mesh import init_device_mesh
+
+# 병렬화 차원 정의
+parallel_dims = ParallelDims(
+    tp=8,
+    pp=1,
+    dp_shard=-1,  # auto
+    dp_replicate=1,
+    cp=1,
+)
+
+# DeviceMesh 초기화
+world_mesh = parallel_dims.build_mesh(device_type="cuda")
+
+# TP용 sub-mesh 추출
+tp_mesh = world_mesh["tp"]
+```
+
+**주의사항:**
+- `enable_loss_parallel=True`: vocab-parallel cross-entropy로 메모리 절약
+- `enable_async_tensor_parallel=True`: torch.compile과 함께 비동기 TP 활성화
+- DTensor 기반이므로 `torch.compile` 완전 호환
 
 ### 선언적 병렬화 계획
 
@@ -628,6 +812,48 @@ torch._inductor.config._micro_pipeline_tp = True
 
 **핵심 파일:** `vllm/distributed/`, `vllm/model_executor/layers/`
 
+### Quick Start
+
+**CLI (권장):**
+```bash
+# OpenAI-compatible 서버 시작
+vllm serve meta-llama/Llama-3.1-8B-Instruct \
+    --tensor-parallel-size 8 \
+    --max-model-len 8192 \
+    --gpu-memory-utilization 0.9
+
+# 또는 단축 옵션 사용
+vllm serve meta-llama/Llama-3.1-8B-Instruct -tp 8
+```
+
+**Python API:**
+```python
+from vllm import LLM, SamplingParams
+
+# 모델 로드 (TP 자동 적용)
+llm = LLM(
+    model="meta-llama/Llama-3.1-8B-Instruct",
+    tensor_parallel_size=8,
+    max_model_len=8192,
+    gpu_memory_utilization=0.9,
+)
+
+# 추론
+sampling_params = SamplingParams(temperature=0.7, max_tokens=256)
+outputs = llm.generate(["Hello, world!"], sampling_params)
+```
+
+**환경 변수:**
+```bash
+export VLLM_WORKER_MULTIPROC_METHOD=spawn  # 멀티프로세스 방식
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+```
+
+**주의사항:**
+- CLI가 가장 권장되는 인터페이스
+- TP 크기는 GPU 수의 약수여야 함
+- `--enforce-eager` 플래그로 CUDA graph 비활성화 가능 (디버깅용)
+
 ### GroupCoordinator 상세 구현
 
 ```python
@@ -747,6 +973,52 @@ ColumnParallel의 출력을 바로 RowParallel에 연결할 때, 중간 scatter�
 **핵심 파일:** `sglang/srt/layers/`
 
 SGLang은 vLLM 기반이지만, 구조화된 출력(structured output) 지원과 함께 독자적인 최적화를 추가했습니다.
+
+### Quick Start
+
+**CLI (권장):**
+```bash
+# OpenAI-compatible 서버 시작
+python -m sglang.launch_server \
+    --model-path meta-llama/Llama-3.1-8B-Instruct \
+    --tp-size 8 \
+    --port 30000
+
+# 또는 단축 명령
+sglang serve meta-llama/Llama-3.1-8B-Instruct --tp 8
+```
+
+**Python API:**
+```python
+import sglang as sgl
+
+# 엔진 초기화
+engine = sgl.Engine(
+    model_path="meta-llama/Llama-3.1-8B-Instruct",
+    tp_size=8,
+)
+
+# 추론
+outputs = engine.generate(
+    prompt="Hello, world!",
+    sampling_params={"temperature": 0.7, "max_new_tokens": 256},
+)
+```
+
+**고급 설정:**
+```python
+engine = sgl.Engine(
+    model_path="meta-llama/Llama-3.1-8B-Instruct",
+    tp_size=8,
+    dp_size=2,                      # DP+TP 이중 병렬화
+    enable_flashinfer_allreduce_fusion=True,  # Hopper/Blackwell 최적화
+)
+```
+
+**주의사항:**
+- `--dp-size`와 `--tp-size` 조합으로 DP+TP 이중 병렬화 가능
+- `--enable-flashinfer-allreduce-fusion`: SM90+ (Hopper/Blackwell) 전용 최적화
+- 구조화된 출력 시 `--grammar` 플래그 사용
 
 ### ScatterMode 상세 설명
 
@@ -889,6 +1161,7 @@ Backward: dY <──[identity]── dL/dY_i
 
 | 측면 | Megatron-LM | nanotron | DeepSpeed | torchtitan | vLLM | SGLang |
 |------|-------------|----------|-----------|-----------|------|--------|
+| **API 스타일** | CLI + Python | YAML 중심 | JSON config | TOML + DTensor | CLI 최우선 | CLI + Python |
 | **추상화** | autograd.Function | Differentiable* | AutoTP 주입 | DTensor | GroupCoordinator | LayerCommunicator |
 | **통신 오버랩** | CUDA 스트림 | same_device_shard | AsyncColumnParallel | torch.compile | - | FlashInfer 퓨전 |
 | **GQA 지원** | 암시적 | contiguous_chunks | SubParam | shape 파라미터 | num_kv_head_replicas | 동일 |
