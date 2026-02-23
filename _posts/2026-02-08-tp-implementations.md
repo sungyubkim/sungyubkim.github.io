@@ -1146,7 +1146,328 @@ Forward:  Y_i ──[all-reduce]──> Y = Σ Y_i
 Backward: dY <──[identity]── dL/dY_i
 ```
 
-## 4.2 f/g 연산자 구현 비교
+## 4.2 입력 데이터 처리 패턴
+
+TP를 실제로 사용할 때 가장 먼저 마주치는 문제는 **"입력 데이터를 어떻게 각 랭크에 전달하는가?"**입니다. 이를 잘못 처리하면 silent correctness bug가 발생합니다.
+
+### 4.2.1 핵심 원칙: 입력은 복제, 가중치는 분할
+
+ColumnParallelLinear의 수학적 정의에서 답을 찾을 수 있습니다:
+
+```
+Y = X @ A = X @ [A_0 | A_1 | ... | A_{p-1}] = [X @ A_0 | X @ A_1 | ... | X @ A_{p-1}]
+```
+
+각 랭크 $i$가 $Y_i = X @ A_i$를 계산하려면, **모든 랭크에 동일한 $X$가 필요**합니다. 가중치 $A$만 분할됩니다.
+
+```
+                    ┌──────────────────────────────────────────────┐
+                    │           입력 데이터 흐름                      │
+                    │                                              │
+ DataLoader/Client  │   X (tokens)                                 │
+        │           │     │                                        │
+        ▼           │     ▼ (복제)                                  │
+  ┌───────────┐     │  ┌────────┬────────┬────────┐                │
+  │ 동일한 X  │────>│  │ Rank 0 │ Rank 1 │ Rank 2 │  ← 모든 랭크   │
+  └───────────┘     │  │ X @ A₀ │ X @ A₁ │ X @ A₂ │    동일한 X    │
+                    │  └────────┴────────┴────────┘                │
+                    │     │ (가중치만 분할)                           │
+                    │     ▼                                        │
+                    │  [Y₀, Y₁, Y₂] → All-Reduce/Gather → Y      │
+                    └──────────────────────────────────────────────┘
+```
+
+이 원칙을 달성하는 메커니즘이 프레임워크마다 다릅니다.
+
+### 4.2.2 학습 프레임워크의 입력 처리
+
+#### Megatron-LM: tp_rank=0만 DataLoader, 명시적 broadcast
+
+Megatron-LM은 가장 명시적인 방식을 사용합니다. **tp_rank=0만 DataLoader에서 데이터를 가져오고**, 나머지 랭크에 `torch.distributed.broadcast()`로 전파합니다:
+
+```python
+# megatron/training/utils.py:517-600
+def get_batch_on_this_tp_rank(data_iterator):
+    def _broadcast(item):
+        if item is not None:
+            torch.distributed.broadcast(
+                item,
+                mpu.get_tensor_model_parallel_src_rank(),
+                group=mpu.get_tensor_model_parallel_group(),
+            )
+
+    if mpu.get_tensor_model_parallel_rank() == 0:
+        # tp_rank=0만 데이터 가져옴
+        data = next(data_iterator)
+        batch = {
+            'tokens': data["tokens"].cuda(non_blocking=True),
+            'labels': data["labels"].cuda(non_blocking=True),
+            'loss_mask': data["loss_mask"].cuda(non_blocking=True),
+            'position_ids': data["position_ids"].cuda(non_blocking=True),
+            # ...
+        }
+    else:
+        # 다른 랭크: 빈 텐서 할당 후 broadcast 수신
+        tokens = torch.empty(shape, dtype=torch.int64, device=torch.cuda.current_device())
+        # ...
+
+    # 모든 랭크에서 broadcast 호출
+    _broadcast(batch['tokens'])
+    _broadcast(batch['labels'])
+    # ...
+```
+
+Pipeline Parallelism과 결합 시, PP 스테이지에 따라 필요한 필드만 선택적으로 broadcast합니다 (first stage: tokens/position_ids, last stage: labels/loss_mask).
+
+#### nanotron: 동일 시드로 DataLoader 실행 + 런타임 sanity check
+
+nanotron은 **모든 TP 랭크가 동일한 시드의 DataLoader를 실행**하는 방식을 사용합니다. 시드 계산에 TP rank를 포함하지 않아 동일한 데이터가 생성됩니다:
+
+```python
+# src/nanotron/data/dataloader.py:135-138
+generator.manual_seed(
+    seed * (1 + dist.get_rank(parallel_context.dp_pg))
+         * (1 + dist.get_rank(parallel_context.pp_pg))
+    # TP rank는 포함되지 않음 → 모든 TP 랭크가 동일한 시드
+)
+```
+
+실제로 동기화되었는지 런타임에 검증합니다:
+
+```python
+# src/nanotron/data/dataloader.py:77-85
+for key, value in sorted(micro_batch.items(), key=lambda x: x[0]):
+    if isinstance(value, TensorPointer):
+        continue
+    assert_tensor_synced_across_pg(
+        tensor=value,
+        pg=parallel_context.tp_pg,
+        msg=lambda err: f"{key} are not synchronized throughout TP {err}",
+    )
+```
+
+**장점:** broadcast 통신 비용 제거. **단점:** DataLoader가 결정론적이어야 하며, 비결정론적 augmentation은 사용 불가.
+
+#### DeepSpeed: 사용자 책임 + 첫 forward pass에서 1회 검증
+
+DeepSpeed는 **입력 동기화를 사용자에게 맡기되**, 첫 forward pass에서 자동 검증합니다:
+
+```python
+# deepspeed/runtime/engine.py:520-567
+def _configure_tensor_parallel_states(self, model):
+    def check_dataloader_inputs_same_across_ranks(module, args, kwargs):
+        def broadcast_and_check(args, bcast_rank, bcast_group):
+            if self.mpu.get_tensor_model_parallel_rank() == 0:
+                _src_args = [args]
+                dist.broadcast_object_list(_src_args, src=bcast_rank, group=bcast_group)
+            else:
+                _src_args = [None]
+                dist.broadcast_object_list(_src_args, src=bcast_rank, group=bcast_group)
+                is_equal = compare_tensors_in_structures(args, _src_args[0])
+
+            # all-reduce로 모든 랭크의 비교 결과 집계
+            equal_tensor = torch.tensor(is_equal, ...)
+            dist.all_reduce(equal_tensor, group=bcast_group)
+            assert torch.equal(equal_tensor, torch.tensor(tp_world_size, ...)), \
+                "Data inconsistency within the TP group."
+
+        broadcast_and_check(args, bcast_rank, bcast_group)
+        self.first_dataloader_check.remove()  # hook 자체를 제거
+
+    # forward_pre_hook으로 등록 → 첫 스텝에서만 실행
+    self.first_dataloader_check = self.module.register_forward_pre_hook(
+        check_dataloader_inputs_same_across_ranks, prepend=True, with_kwargs=True
+    )
+```
+
+**특징:** 첫 스텝에서만 검증 후 hook을 제거하여 이후 오버헤드가 없습니다. 단, 이후 스텝에서의 불일치는 감지하지 못합니다.
+
+#### torchtitan: batch mesh(DP만)로 DataLoader 초기화 + DTensor Replicate
+
+torchtitan은 **DeviceMesh의 batch 차원(DP만)으로 DataLoader를 초기화**합니다. TP 차원은 포함되지 않으므로 같은 DP 그룹의 TP 랭크들은 자연스럽게 동일한 배치를 받습니다:
+
+```python
+# torchtitan/train.py:98-135
+if parallel_dims.dp_enabled:
+    batch_mesh = parallel_dims.get_mesh("batch")
+    batch_degree, batch_rank = batch_mesh.size(), batch_mesh.get_local_rank()
+else:
+    batch_degree, batch_rank = 1, 0
+
+self.dataloader = self.train_spec.build_dataloader_fn(
+    dp_world_size=batch_degree,  # DP 크기만 사용
+    dp_rank=batch_rank,          # TP rank 무관
+    # ...
+)
+```
+
+모델 입력은 DTensor의 `Replicate()` 레이아웃으로 선언됩니다:
+
+```python
+# torchtitan/models/llama3/infra/parallelize.py:177-180
+"tok_embeddings": RowwiseParallel(
+    input_layouts=Replicate(),   # 입력: 모든 TP 랭크에 복제
+    output_layouts=Shard(1),     # 출력: sequence dim 분할
+),
+```
+
+### 4.2.3 추론 프레임워크의 입력 처리
+
+#### vLLM: MessageQueue (공유 메모리)로 전체 워커에 broadcast
+
+vLLM은 **공유 메모리 기반 MessageQueue**로 SchedulerOutput을 모든 TP 워커에 동시 전달합니다:
+
+```python
+# vllm/v1/executor/multiproc_executor.py:131-137
+self.rpc_broadcast_mq = MessageQueue(
+    self.world_size,
+    self.local_world_size,
+    max_chunk_bytes=max_chunk_bytes,
+    connect_ip=self.parallel_config.master_addr,
+)
+scheduler_output_handle = self.rpc_broadcast_mq.export_handle()
+
+# Lines 270-280: SchedulerOutput을 모든 워커에 broadcast
+def execute_model(self, scheduler_output):
+    return self.collective_rpc("execute_model", args=(scheduler_output,), ...)
+
+# Lines 845-855: 각 워커가 동일한 입력을 dequeue
+def worker_busy_loop(self):
+    while True:
+        method, args, kwargs, output_rank = self.rpc_broadcast_mq.dequeue(...)
+        func = getattr(self.worker, method)
+        output = func(*args, **kwargs)
+```
+
+**특징:** 공유 메모리(`ShmRingBuffer`)를 통해 직렬화/역직렬화 없이 빠르게 전달. 멀티노드에서는 `create_mq_broadcaster`로 노드 간 전파.
+
+#### SGLang: ZMQ 수신 → broadcast_pyobj (Gloo CPU group)
+
+SGLang은 **TP rank 0만 ZMQ로 요청을 수신**하고, Gloo CPU 그룹을 통해 다른 TP 랭크에 전파합니다:
+
+```python
+# sglang/srt/managers/scheduler.py:1229-1250
+if self.attn_tp_rank == 0 and self.attn_cp_rank == 0:
+    recv_reqs = []
+    while True:
+        try:
+            recv_req = self.recv_from_tokenizer.recv_pyobj(zmq.NOBLOCK)
+            recv_reqs.append(recv_req)
+        except zmq.ZMQError:
+            break
+
+# sglang/srt/managers/scheduler.py:1298-1306 — TP 그룹으로 broadcast
+if self.tp_size != 1:
+    recv_reqs = broadcast_pyobj(
+        recv_reqs,
+        self.tp_group.rank,
+        self.tp_cpu_group,           # Gloo CPU 그룹
+        src=self.tp_group.ranks[0],  # TP rank 0이 소스
+    )
+```
+
+`broadcast_pyobj`는 2단계 프로토콜을 사용합니다: (1) 크기 broadcast → (2) pickle 데이터 broadcast.
+
+```python
+# sglang/srt/utils/common.py:1268-1314
+def broadcast_pyobj(data, rank, dist_group, src=0):
+    if rank == src:
+        serialized_data = pickle.dumps(data)
+        tensor_size = torch.tensor([len(serialized_data)], dtype=torch.long)
+        dist.broadcast(tensor_size, src=src, group=dist_group)
+        tensor_data = torch.ByteTensor(np.frombuffer(serialized_data, dtype=np.uint8))
+        dist.broadcast(tensor_data, src=src, group=dist_group)
+    else:
+        tensor_size = torch.tensor([0], dtype=torch.long)
+        dist.broadcast(tensor_size, src=src, group=dist_group)
+        tensor_data = torch.empty(tensor_size.item(), dtype=torch.uint8)
+        dist.broadcast(tensor_data, src=src, group=dist_group)
+        data = pickle.loads(bytes(tensor_data.cpu().numpy()))
+    return data
+```
+
+### 4.2.4 비교 표
+
+| 프레임워크 | 메커니즘 | broadcast 주체 | 자동/수동 | 검증 방식 |
+|-----------|----------|---------------|----------|----------|
+| **Megatron-LM** | tp_rank=0 → `torch.distributed.broadcast` | 프레임워크 | 자동 | 암묵적 (broadcast가 보장) |
+| **nanotron** | 동일 시드 DataLoader + sanity check | 프레임워크 | 자동 | `assert_tensor_synced_across_pg` |
+| **DeepSpeed** | 사용자 DataLoader, 첫 스텝 hook 검증 | 사용자 | 수동 | `forward_pre_hook` (1회) |
+| **torchtitan** | batch mesh(DP만) + DTensor `Replicate()` | 프레임워크 | 자동 | DTensor 레이아웃 제약 |
+| **vLLM** | `MessageQueue` (공유 메모리) broadcast | 프레임워크 | 자동 | 단일 소스 broadcast |
+| **SGLang** | ZMQ → `broadcast_pyobj` (Gloo CPU group) | 프레임워크 | 자동 | 단일 소스 broadcast |
+
+### 4.2.5 Sequence Parallel과의 상호작용
+
+SP가 비활성화된 경우, 입력은 전체 파이프라인에서 복제 상태를 유지합니다. SP가 활성화되면, **Embedding 출력 이후 ReduceScatter로 sequence 차원이 분할**됩니다:
+
+```
+SP 비활성화:  X(복제) → Embedding → H(복제) → Attention → ... → H(복제)
+SP 활성화:    X(복제) → Embedding → ReduceScatter → H(seq분할) → AllGather → Attention → ...
+```
+
+프레임워크별 SP 전환 코드:
+
+**Megatron-LM** — `scatter_to_sequence_parallel_region` 함수로 Embedding 출력을 분할:
+
+```python
+# megatron/core/tensor_parallel/mappings.py:236-250
+class _ScatterToModelParallelRegion(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx, input_, group):
+        return _split_along_last_dim(input_, group)  # scatter
+    @staticmethod
+    def backward(ctx, grad_output):
+        return _gather_along_last_dim(grad_output, ctx.group), None  # gather
+```
+
+**nanotron** — `tp_mode=REDUCE_SCATTER`로 모드 전환:
+
+```python
+# src/nanotron/parallel/tensor_parallel/functional.py:252-260
+elif tp_mode is TensorParallelLinearMode.REDUCE_SCATTER:
+    # Forward: AllGather → matmul
+    # Backward: ReduceScatter
+    handle = dist.all_gather_into_tensor(gathered_tensor, tensor, group=group, async_op=True)
+```
+
+**torchtitan** — DTensor 레이아웃으로 선언적 전환:
+
+```python
+# torchtitan/models/llama3/infra/parallelize.py:177-180, 225-237
+"tok_embeddings": RowwiseParallel(
+    output_layouts=Shard(1),  # Embedding 출력: sequence dim 분할
+),
+"attention_norm": SequenceParallel(),  # LayerNorm: 분할 상태 유지
+"attention": PrepareModuleInput(
+    input_layouts=(Shard(1),),             # 현재: sequence dim 분할
+    desired_input_layouts=(Replicate(),),   # Attention 전: 복제로 변환
+),
+```
+
+### 4.2.6 흔한 실수와 디버깅
+
+**Silent Correctness Bug 경고:** TP 랭크에 서로 다른 입력을 주면 loss는 정상적으로 감소하지만, **모델이 의미 없는 가중치를 학습**합니다. 각 랭크가 서로 다른 $X$에 대해 $Y_i = X_i @ A_i$를 계산하면 all-reduce 결과 $\sum_i Y_i$가 올바른 출력이 아니기 때문입니다. 이 버그는 loss 값만으로는 발견하기 어렵습니다.
+
+**디버깅 팁:** nanotron의 `assert_tensor_synced_across_pg` 패턴을 활용하면 TP 랭크 간 입력 동기화를 확인할 수 있습니다:
+
+```python
+# nanotron 스타일 디버깅 유틸리티
+def assert_tensor_synced_across_pg(tensor, pg, msg=lambda err: f"Not synced: {err}"):
+    """TP 그룹 내 텐서가 동일한지 검증"""
+    world_size = dist.get_world_size(pg)
+    reference = tensor.clone()
+    dist.broadcast(reference, src=dist.get_global_rank(pg, 0), group=pg)
+    max_diff = (tensor - reference).abs().max().item()
+    assert max_diff == 0.0, msg(f"max_diff={max_diff}")
+```
+
+**체크리스트:**
+- DataLoader 시드에 TP rank가 포함되어 있지 않은지 확인
+- 데이터 augmentation이 결정론적인지 확인 (또는 동일 시드 기반)
+- 커스텀 DataLoader 사용 시, 학습 초기에 TP 랭크 간 입력을 비교하는 assertion 추가
+
+## 4.3 f/g 연산자 구현 비교
 
 | 프레임워크 | 구현 방식 | 특징 |
 |-----------|----------|------|
@@ -1157,7 +1478,7 @@ Backward: dY <──[identity]── dL/dY_i
 | vLLM | `GroupCoordinator` 래퍼 | 추론 최적화, custom op |
 | SGLang | `LayerCommunicator` | 레이어별 통신 오케스트레이션 |
 
-## 4.3 프레임워크별 핵심 차이 표
+## 4.4 프레임워크별 핵심 차이 표
 
 | 측면 | Megatron-LM | nanotron | DeepSpeed | torchtitan | vLLM | SGLang |
 |------|-------------|----------|-----------|-----------|------|--------|
@@ -1167,7 +1488,7 @@ Backward: dY <──[identity]── dL/dY_i
 | **GQA 지원** | 암시적 | contiguous_chunks | SubParam | shape 파라미터 | num_kv_head_replicas | 동일 |
 | **고유 최적화** | wgrad 퓨전 커널 | tp_recompute_allgather | tp_grain_size | loss_parallel | custom op | ScatterMode |
 
-## 4.4 MLP 병렬화
+## 4.5 MLP 병렬화
 
 모든 프레임워크가 동일한 기본 패턴을 따릅니다:
 
@@ -1204,7 +1525,7 @@ Backward: dY <──[identity]── dL/dY_i
 - **torchtitan:** DTensor가 레이아웃 변환 자동 처리
 - **vLLM/SGLang:** `gather_output=False`로 중간 통신 스킵
 
-## 4.5 Cross-Entropy 병렬화
+## 4.6 Cross-Entropy 병렬화
 
 학습 프레임워크(Megatron-LM, nanotron)는 vocab-parallel cross-entropy를 구현합니다:
 
