@@ -39,6 +39,7 @@
         - "Post-hoc training team @ Language Intelligence PJT., Core Algorithm Lab, AI Center."
         - "Improved the Instruction-Following capacity of LLM (≥ 70B) with DPO & Synthetic Data Generation."
         - "Improved the reasoning capacity of LLM (≥ 235B) with RLVR & Dataset Pruning."
+        - "Achieved 49% on CVDP Spec2RTL benchmark via RL fine-tuning of GPT-Oss (120B), surpassing Claude 3.7 Sonnet (48%) and DeepSeek-R1 (44%)."
         - "Optimized training (FSDPs, NeMo) & inference (vLLM, SGLang) frameworks for LLMs in HPC (≥ 256 GPUs)."
 
 - title: Publications
