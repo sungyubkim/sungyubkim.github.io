@@ -149,11 +149,30 @@
 
 #regular-entry(
   [
+    #strong[Research Scientist], NAVER Cloud -- Seongnam, Korea
+
+  ],
+  [
+    Apr 2026 – present
+
+  ],
+  main-column-second-row: [
+    - Post-Training team \@ HyperScale AI.
+
+    - Stabilized RLVR training of Mixture-of-Experts (MoE) models.
+
+    - Mitigated repetitive generation in LLMs via mechanistic interpretability analysis.
+
+  ],
+)
+
+#regular-entry(
+  [
     #strong[Staff Engineer], Samsung Electronics -- Suwon, Korea
 
   ],
   [
-    Feb 2024 – present
+    Feb 2024 – Mar 2026
 
   ],
   main-column-second-row: [
