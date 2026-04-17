@@ -313,7 +313,7 @@
   ],
 )
 
-== SKILLS & INTERESTS
+== Technical Skills
 
 #strong[Coding:] Python, R, LaTeX
 
