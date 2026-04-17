@@ -276,7 +276,7 @@
   main-column-second-row: [
     #emph[Sung-Yub Kim], Sihwan Park, Kyungsu Kim, Eunho Yang
 
-    #link("https://openreview.net/pdf?id=OcKwZhPwHA")[openreview.net\/pdf?id=OcKwZhPwHA] (ICLR 2023)
+    #link("https://openreview.net/pdf?id=OcKwZhPwHA")[openreview.net\/pdf?id=OcKwZhPwHA] (ICLR 2023, Spotlighted)
 
   ],
 )
