@@ -1,79 +1,140 @@
-- title: General Information
-  type: map
-  contents:
-    - name: Full Name
-      value: Sung-Yub Kim
-    - name: Languages
-      value: Korean (native), English (fluent)
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
+cv:
+  name: Sung-Yub Kim
+  location: Seoul, Korea
+  email: sungyub.kim@mli.kaist.ac.kr
+  social_networks:
+    - network: GitHub
+      username: sungyubkim
+    - network: LinkedIn
+      username: sung-yub-kim-0a82a1264
+  sections:
+    education:
+      - institution: KAIST
+        area: Graduate School of AI
+        degree: Ph.D.
+        start_date: 2019-02
+        end_date: 2024-02
+        highlights:
+          - "**Advisor:** Eunho Yang (Machine Learning & Intelligence Lab.)"
+          - "**Thesis:** Post-hoc analysis techniques and their utilization of pre-trained Neural Networks."
+      - institution: SNU
+        area: Industrial Engineering
+        degree: M.S.
+        start_date: 2017-03
+        end_date: 2019-02
+        highlights:
+          - "**Advisor:** Sung-Pil Hong (Management Science & Optimization Lab.)"
+          - "**Thesis:** Train rescheduling via power regret matching algorithm."
+      - institution: SNU
+        area: Industrial Engineering & Mathematical Science (Double Major)
+        degree: B.S.
+        start_date: 2013-03
+        end_date: 2017-02
+    experience:
+      - company: Samsung Electronics
+        position: Staff Engineer
+        start_date: 2024-02
+        end_date: present
+        location: Suwon, Korea
+        highlights:
+          - Post-hoc training team @ Language Intelligence PJT., Core Algorithm Lab, AI Center.
+          - Improved the Instruction-Following capacity of LLM (≥ 70B) with DPO & Synthetic Data Generation.
+          - Improved the reasoning capacity of LLM (≥ 235B) with RLVR & Dataset Pruning.
+          - Achieved 49% on CVDP Spec2RTL benchmark via RL fine-tuning of GPT-Oss (120B), surpassing Claude 3.7 Sonnet (48%) and DeepSeek-R1 (44%).
+          - Optimized training (FSDPs, NeMo) & inference (vLLM, SGLang) frameworks for LLMs in HPC (≥ 256 GPUs).
+    publications:
+      - title: "LANTERN: Accelerating Visual Autoregressive Models with Relaxed Speculative Decoding"
+        authors:
+          - Doohyuk Jang
+          - Sihwan Park
+          - June Yong Yang
+          - Yeonsung Jung
+          - Jihun Yun
+          - Souvik Kundu
+          - "*Sung-Yub Kim*"
+          - Eunho Yang
+        journal: ICLR 2025
+        url: https://openreview.net/pdf?id=98d7DLMGdt
+      - title: "A Simple Remedy for Dataset Bias via Self-Influence: A Mislabeled Sample Perspective"
+        authors:
+          - Yeonsung Jung
+          - Jaeyun Song
+          - June Yong Yang
+          - Jin-Hwa Kim
+          - "*Sung-Yub Kim*"
+          - Eunho Yang
+        journal: NeurIPS 2024
+        url: https://openreview.net/pdf?id=ZVrrPNqHFw
+      - title: "TTD: Text-Tag Self-Distillation Enhancing Image-Text Alignment in CLIP to Alleviate Single Tag Bias"
+        authors:
+          - Sanghyun Jo
+          - Soohyun Ryu
+          - "*Sung-Yub Kim*"
+          - Eunho Yang
+          - Kyungsu Kim
+        journal: ECCV 2024
+        url: https://arxiv.org/pdf/2404.00384
+      - title: "GEX: A flexible method for approximating influence via Geometric Ensemble"
+        authors:
+          - "*Sung-Yub Kim*"
+          - Kyungsu Kim
+          - Eunho Yang
+        journal: NeurIPS 2023
+        url: https://openreview.net/pdf?id=tz4ECtAu8e
+      - title: "RGE: A Repulsive Graph Rectification for Node Classification via Influence"
+        authors:
+          - Jaeyun Song
+          - "*Sung-Yub Kim*"
+          - Eunho Yang
+        journal: ICML 2023
+        url: https://openreview.net/pdf?id=OcKwZhPwHA
+      - title: Scale-invariant Bayesian Neural Networks with Connectivity Tangent Kernel
+        authors:
+          - "*Sung-Yub Kim*"
+          - Sihwan Park
+          - Kyungsu Kim
+          - Eunho Yang
+        journal: ICLR 2023
+        url: https://openreview.net/pdf?id=OcKwZhPwHA
+      - title: Generalized Tsallis Entropy Reinforcement Learning and Its Application to Soft Mobile Robots
+        authors:
+          - Kyungjae Lee
+          - "*Sung-Yub Kim*"
+          - Sungbin Lim
+          - Sungjoon Choi
+          - Mineui Hong
+          - Jae In Kim
+          - Yong-Lae Park
+          - Songhwai Oh
+        journal: RSS 2020
+    projects:
+      - name: A machine learning and statistical inference framework for explainable artificial intelligence
+        start_date: 2022-01
+        end_date: 2024-12
+        highlights:
+          - Institute of Information & Communications Technology Planning & Evaluation (IITP).
+          - "Topic: Bayesian Neural Networks, Influence Function"
+      - name: Autonomous Intelligent Digital Companion Framework and Application
+        start_date: 2019-01
+        end_date: 2021-12
+        highlights:
+          - Institute of Information & Communications Technology Planning & Evaluation (IITP).
+          - "Topic: Continual Learning, Meta Learning"
+    SKILLS & INTERESTS:
+      - label: Coding
+        details: Python, R, LaTeX
+      - label: ML Frameworks
+        details: PyTorch, Megatron-LM, verl, vLLM, SGLang
+      - label: Distributed Computing
+        details: |-
+          NVIDIA Certificates:
 
-- title: Education
-  type: time_table
-  contents:
-    - title: Ph.D. in Graduate School of AI
-      institution: Korea Advanced Institute of Science and Technology (KAIST)
-      year: 2019 - 2024
-      description:
-        - Advisor. Prof. Eunho Yang
-        - "Thesis: Post-hoc analysis techniques and their utilization of pre-trained Neural Networks"
-        - Research on explainability, generalization, and adaptation of deep learning models
-
-    - title: M.S. in Industrial Engineering (Mathematical Optimization)
-      institution: Seoul National University (SNU)
-      year: 2017 - 2019
-      description:
-        - Advisor. Prof. Sung-Pil Hong (Management Science & Optimization Lab.)
-        - "Thesis: Train rescheduling via power regret matching algorithm"
-        - Research on reinforcement learning and optimization
-
-    - title: B.S. in Industrial Engineering & Mathematical Science
-      institution: Seoul National University (SNU)
-      year: 2013 - 2017
-
-- title: Experience
-  type: time_table
-  contents:
-    - title: Staff Engineer
-      institution: AI Center, Samsung Electronics
-      year: 2024 - Present
-      description:
-        - "Post-hoc training team @ Language Intelligence PJT., Core Algorithm Lab, AI Center."
-        - "Improved the Instruction-Following capacity of LLM (≥ 70B) with DPO & Synthetic Data Generation."
-        - "Improved the reasoning capacity of LLM (≥ 235B) with RLVR & Dataset Pruning."
-        - "Achieved 49% on CVDP Spec2RTL benchmark via RL fine-tuning of GPT-Oss (120B), surpassing Claude 3.7 Sonnet (48%) and DeepSeek-R1 (44%)."
-        - "Optimized training (FSDPs, NeMo) & inference (vLLM, SGLang) frameworks for LLMs in HPC (≥ 256 GPUs)."
-
-- title: Publications
-  type: list
-  contents:
-    - "[7] LANTERN: Accelerating Visual Autoregressive Models with Relaxed Speculative Decoding (ICLR 2025, Co-Correspondence Author)"
-    - "[6] A Simple Remedy for Dataset Bias via Self-Influence: A Mislabeled Sample Perspective (NeurIPS 2024)"
-    - "[5] TTD: Text-Tag Self-Distillation Enhancing Image-Text Alignment in CLIP to Alleviate Single Tag Bias (ECCV 2024)"
-    - "[4] GEX: A flexible method for approximating influence via Geometric Ensemble (NeurIPS 2023, 1st Author)"
-    - "[3] RGE: A Repulsive Graph Rectification for Node Classification via Influence (ICML 2023, Co-1st Author)"
-    - "[2] Scale-invariant Bayesian Neural Networks with Connectivity Tangent Kernel (ICLR 2023 Spotlight, 1st Author)"
-    - "[1] Generalized Tsallis Entropy Reinforcement Learning and Its Application to Soft Mobile Robots (RSS 2020)"
-
-- title: Research Projects (in school)
-  type: time_table
-  contents:
-    - title: Autonomous Intelligent Digital Companion Framework and Application
-      institution: Institute of Information & Communications Technology Planning & Evaluation (IITP)
-      year: 2019 - 2021
-
-    - title: A study on adaptive point and regional OOD detection techniques based on sub-task generation
-      institution: Samsung
-      year: 2020 - 2023
-
-    - title: A machine learning and statistical inference framework for explainable artificial intelligence
-      institution: Institute of Information & Communications Technology Planning & Evaluation (IITP)
-      year: 2022 - 2024
-
-    - title: A Study on Optimization and Network Interpretation Method for Large-Scale Machine Learning
-      institution: National Research Foundation of Korea (NRF) grant funded by the Korea government (MSIT)
-      year: 2022 - 2023
-
-- title: Skills & Interests
-  type: list
-  contents:
-    - "Coding: Python, R, LaTeX"
-    - "Distributed Computing: NVIDIA Certificates — Model Parallelism: Building and Deploying Large Neural Networks / Fundamentals of Accelerated Computing with CUDA Python"
+          - [Model Parallelism: Building and Deploying Large Neural Networks](https://learn.nvidia.com/certificates?id=Q6pX3qa4SrCjQoKUA5-IZw)
+          - [Fundamentals of Accelerated Computing with CUDA Python](https://learn.nvidia.com/certificates?id=_RZWRDEkTwGSXko2GyhCig)
+      - label: Research Areas
+        details: Bayesian Neural Networks, Influence Functions, Continual Learning, Meta Learning
+      - label: Languages
+        details: Korean, English
+design:
+  theme: engineeringresumes
