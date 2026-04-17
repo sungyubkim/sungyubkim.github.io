@@ -9,7 +9,7 @@ cv:
     - network: LinkedIn
       username: sung-yub-kim-0a82a1264
   sections:
-    education:
+    Education:
       - institution: KAIST
         area: Graduate School of AI
         degree: Ph.D.
@@ -31,7 +31,7 @@ cv:
         degree: B.S.
         start_date: 2013-03
         end_date: 2017-02
-    experience:
+    Experience:
       - company: Samsung Electronics
         position: Staff Engineer
         start_date: 2024-02
@@ -43,7 +43,7 @@ cv:
           - Improved the reasoning capacity of LLM (≥ 235B) with RLVR & Dataset Pruning.
           - Achieved 49% on CVDP Spec2RTL benchmark via RL fine-tuning of GPT-Oss (120B), surpassing Claude 3.7 Sonnet (48%) and DeepSeek-R1 (44%).
           - Optimized training (FSDPs, NeMo) & inference (vLLM, SGLang) frameworks for LLMs in HPC (≥ 256 GPUs).
-    publications:
+    Publications:
       - title: "LANTERN: Accelerating Visual Autoregressive Models with Relaxed Speculative Decoding"
         authors:
           - Doohyuk Jang
@@ -108,7 +108,7 @@ cv:
           - Yong-Lae Park
           - Songhwai Oh
         journal: RSS 2020
-    projects:
+    Projects:
       - name: A machine learning and statistical inference framework for explainable artificial intelligence
         start_date: 2022-01
         end_date: 2024-12
@@ -121,7 +121,7 @@ cv:
         highlights:
           - Institute of Information & Communications Technology Planning & Evaluation (IITP).
           - "Topic: Continual Learning, Meta Learning"
-    SKILLS & INTERESTS:
+    Technical Skills:
       - label: Coding
         details: Python, R, LaTeX
       - label: ML Frameworks
