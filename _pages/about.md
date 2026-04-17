@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: Staff Engineer @ <a href="https://www.sait.samsung.co.kr/">AI Center, Samsung Electronics</a>
+subtitle: Research Scientist @ <a href="https://clova.ai/hyperclova">HyperScale AI, NAVER Cloud</a>
 
 profile:
   align: right
@@ -25,7 +25,7 @@ redirect_from:
   - /about.html
 ---
 
-I'm a researcher in the LLM team @ **AI Center, Samsung Electronics**. I received my Ph.D. from KAIST, where I studied machine learning and deep learning theory.
+I'm a Research Scientist in the Post-Training team @ **HyperScale AI, NAVER Cloud**. I received my Ph.D. from KAIST, where I studied machine learning and deep learning theory.
 
 ## Research Interests
 
@@ -38,11 +38,12 @@ I'm a researcher in the LLM team @ **AI Center, Samsung Electronics**. I receive
 
 | Period | Role | Organization |
 |--------|------|-------------|
-| 2024 – Present | Staff Engineer | AI Center, Samsung Electronics |
+| 2026 – Present | Research Scientist | HyperScale AI, NAVER Cloud |
+| 2024 – 2026 | Staff Engineer | AI Center, Samsung Electronics |
 | 2019 – 2024 | Ph.D. in Machine Learning | KAIST |
 
 ## Collaboration
 
 I'm always open to research collaborations, especially in the areas of LLM efficiency, interpretability, and distributed training. Feel free to reach out via email or connect on [LinkedIn](https://www.linkedin.com/in/sung-yub-kim-0a82a1264).
 
-For more details, see my [CV](/cv/).
+For more details, see my [CV](/assets/rendercv/rendercv_output/Sung-Yub_Kim_CV.pdf).
