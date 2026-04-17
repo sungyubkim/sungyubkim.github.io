@@ -28,7 +28,7 @@ jobs:
       - name: Render CV
         run: |
           rendercv render _data/cv.yml \
-            --output-folder assets/rendercv/rendercv_output
+            --output-folder "$GITHUB_WORKSPACE/assets/rendercv/rendercv_output"
 
       - name: Verify PDF content integrity
         run: |
