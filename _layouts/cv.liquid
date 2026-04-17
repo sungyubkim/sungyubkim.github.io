@@ -59,6 +59,7 @@ layout: default
       {% if render_rendercv and site.data.cv and site.data.cv.cv %}
         {% comment %} RenderCV format {% endcomment %}
         {% assign cv = site.data.cv.cv %}
+        {% assign empty_list = "" | split: "" %}
 
         <!-- Header/Contact Information -->
         {% if cv.name or cv.label or cv.location or cv.email or cv.phone or cv.website %}
@@ -122,7 +123,9 @@ layout: default
 
         <!-- RenderCV Sections - Merge Experience and Volunteer -->
         {% comment %} First, combine Experience and Volunteer entries {% endcomment %}
-        {% assign combined_experience = cv.sections.Experience | concat: cv.sections.Volunteer %}
+        {% assign experience_entries = cv.sections.Experience | default: empty_list %}
+        {% assign volunteer_entries = cv.sections.Volunteer | default: empty_list %}
+        {% assign combined_experience = experience_entries | concat: volunteer_entries %}
         {% if combined_experience.size > 0 %}
           <a class="anchor" id="experience"></a>
           <div class="card mt-3 p-3">
