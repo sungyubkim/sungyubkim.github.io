@@ -32,10 +32,19 @@ cv:
         start_date: 2013-03
         end_date: 2017-02
     Experience:
+      - company: NAVER Cloud
+        position: Research Scientist
+        start_date: 2026-04
+        end_date: present
+        location: Seongnam, Korea
+        highlights:
+          - Post-Training team @ HyperScale AI.
+          - Stabilized RLVR training of Mixture-of-Experts (MoE) models.
+          - Mitigated repetitive generation in LLMs via mechanistic interpretability analysis.
       - company: Samsung Electronics
         position: Staff Engineer
         start_date: 2024-02
-        end_date: present
+        end_date: 2026-03
         location: Suwon, Korea
         highlights:
           - Post-hoc training team @ Language Intelligence PJT., Core Algorithm Lab, AI Center.
