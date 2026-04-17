@@ -1,0 +1,51 @@
+name: Build CV PDF
+
+on:
+  push:
+    branches: [master]
+    paths: ['_data/cv.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v4
+
+      - name: Install RenderCV (pinned 2.8 series)
+        run: uv tool install 'rendercv[full]==2.8.*'
+
+      - name: Install poppler-utils
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends poppler-utils
+
+      - name: Render CV
+        run: |
+          rendercv render _data/cv.yml \
+            --output-folder assets/rendercv/rendercv_output
+
+      - name: Verify PDF content integrity
+        run: |
+          PDF=$(ls assets/rendercv/rendercv_output/*.pdf | head -1)
+          test -n "$PDF" || { echo "No PDF produced"; exit 1; }
+          echo "Verifying: $PDF"
+          pdftotext "$PDF" - > /tmp/cv.txt
+          MISSING=0
+          for needle in "sungyub.kim@mli.kaist.ac.kr" "Eunho Yang" "LANTERN" "Continual Learning" "Megatron-LM"; do
+            if ! grep -qF "$needle" /tmp/cv.txt; then
+              echo "MISSING: $needle"
+              MISSING=1
+            fi
+          done
+          [ $MISSING -eq 0 ]
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "ci: auto-build CV PDF"
+          file_pattern: 'assets/rendercv/rendercv_output/*.pdf assets/rendercv/rendercv_output/*.typ'

@@ -37,3 +37,8 @@ Dockerfile
 # Python
 .venv/
 scripts/
+
+# CI가 생성하는 중간 산출물 중 PDF/TYP만 유지
+assets/rendercv/rendercv_output/*.html
+assets/rendercv/rendercv_output/*.md
+assets/rendercv/rendercv_output/*.png
