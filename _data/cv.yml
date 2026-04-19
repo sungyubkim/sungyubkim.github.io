@@ -53,7 +53,7 @@ cv:
           - Achieved 49% on CVDP Spec2RTL benchmark via RL fine-tuning of GPT-Oss (120B), surpassing Claude 3.7 Sonnet (48%) and DeepSeek-R1 (44%).
           - Optimized training (FSDPs, NeMo) & inference (vLLM, SGLang) frameworks for LLMs in HPC (≥ 256 GPUs).
     Publications:
-      - title: "LANTERN: Accelerating Visual Autoregressive Models with Relaxed Speculative Decoding"
+      - title: "[LANTERN: Accelerating Visual Autoregressive Models with Relaxed Speculative Decoding](https://openreview.net/pdf?id=98d7DLMGdt)"
         authors:
           - Doohyuk Jang
           - Sihwan Park
@@ -64,8 +64,7 @@ cv:
           - "*Sung-Yub Kim*"
           - Eunho Yang
         journal: ICLR 2025
-        url: https://openreview.net/pdf?id=98d7DLMGdt
-      - title: "A Simple Remedy for Dataset Bias via Self-Influence: A Mislabeled Sample Perspective"
+      - title: "[A Simple Remedy for Dataset Bias via Self-Influence: A Mislabeled Sample Perspective](https://openreview.net/pdf?id=ZVrrPNqHFw)"
         authors:
           - Yeonsung Jung
           - Jaeyun Song
@@ -74,8 +73,7 @@ cv:
           - "*Sung-Yub Kim*"
           - Eunho Yang
         journal: NeurIPS 2024
-        url: https://openreview.net/pdf?id=ZVrrPNqHFw
-      - title: "TTD: Text-Tag Self-Distillation Enhancing Image-Text Alignment in CLIP to Alleviate Single Tag Bias"
+      - title: "[TTD: Text-Tag Self-Distillation Enhancing Image-Text Alignment in CLIP to Alleviate Single Tag Bias](https://arxiv.org/pdf/2404.00384)"
         authors:
           - Sanghyun Jo
           - Soohyun Ryu
@@ -83,29 +81,25 @@ cv:
           - Eunho Yang
           - Kyungsu Kim
         journal: ECCV 2024
-        url: https://arxiv.org/pdf/2404.00384
-      - title: "GEX: A flexible method for approximating influence via Geometric Ensemble"
+      - title: "[GEX: A flexible method for approximating influence via Geometric Ensemble](https://openreview.net/pdf?id=tz4ECtAu8e)"
         authors:
           - "*Sung-Yub Kim*"
           - Kyungsu Kim
           - Eunho Yang
         journal: NeurIPS 2023
-        url: https://openreview.net/pdf?id=tz4ECtAu8e
-      - title: "RGE: A Repulsive Graph Rectification for Node Classification via Influence"
+      - title: "[RGE: A Repulsive Graph Rectification for Node Classification via Influence](https://openreview.net/pdf?id=OcKwZhPwHA)"
         authors:
           - Jaeyun Song
           - "*Sung-Yub Kim*"
           - Eunho Yang
         journal: ICML 2023
-        url: https://openreview.net/pdf?id=OcKwZhPwHA
-      - title: Scale-invariant Bayesian Neural Networks with Connectivity Tangent Kernel
+      - title: "[Scale-invariant Bayesian Neural Networks with Connectivity Tangent Kernel](https://openreview.net/pdf?id=OcKwZhPwHA)"
         authors:
           - "*Sung-Yub Kim*"
           - Sihwan Park
           - Kyungsu Kim
           - Eunho Yang
         journal: ICLR 2023, Spotlighted
-        url: https://openreview.net/pdf?id=OcKwZhPwHA
       - title: Generalized Tsallis Entropy Reinforcement Learning and Its Application to Soft Mobile Robots
         authors:
           - Kyungjae Lee

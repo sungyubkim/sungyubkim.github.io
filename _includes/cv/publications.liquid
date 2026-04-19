@@ -30,7 +30,7 @@
                 <a href="{{ entry.url }}">{{ entry.title | default: entry.name }}</a>
               </h6>
             {% elsif entry.title %}
-              <h6 class="title font-weight-bold ml-1 ml-md-4">{{ entry.title }}</h6>
+              <h6 class="title font-weight-bold ml-1 ml-md-4">{{ entry.title | markdownify | remove: '<p>' | remove: '</p>' }}</h6>
             {% endif %}
 
             {% if entry.publisher %}
@@ -50,7 +50,7 @@
                 <a href="{{ entry.url }}">{{ entry.title | default: entry.name }}</a>
               </h6>
             {% elsif entry.title %}
-              <h6 class="title font-weight-bold ml-1 ml-md-4">{{ entry.title }}</h6>
+              <h6 class="title font-weight-bold ml-1 ml-md-4">{{ entry.title | markdownify | remove: '<p>' | remove: '</p>' }}</h6>
             {% endif %}
 
             {% if entry.publisher %}
