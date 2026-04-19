@@ -81,7 +81,7 @@
   date: datetime(
     year: 2026,
     month: 4,
-    day: 17,
+    day: 19,
   ),
 )
 
@@ -193,7 +193,7 @@
 
   #regular-entry(
   [
-    #strong[LANTERN: Accelerating Visual Autoregressive Models with Relaxed Speculative Decoding]
+    #strong[#link("https://openreview.net/pdf?id=98d7DLMGdt")[LANTERN: Accelerating Visual Autoregressive Models with Relaxed Speculative Decoding]]
 
   ],
   [
@@ -201,14 +201,14 @@
   main-column-second-row: [
     Doohyuk Jang, Sihwan Park, June Yong Yang, Yeonsung Jung, Jihun Yun, Souvik Kundu, #emph[Sung-Yub Kim], Eunho Yang
 
-    #link("https://openreview.net/pdf?id=98d7DLMGdt")[openreview.net\/pdf?id=98d7DLMGdt] (ICLR 2025)
+    (ICLR 2025)
 
   ],
 )
 
   #regular-entry(
   [
-    #strong[A Simple Remedy for Dataset Bias via Self-Influence: A Mislabeled Sample Perspective]
+    #strong[#link("https://openreview.net/pdf?id=ZVrrPNqHFw")[A Simple Remedy for Dataset Bias via Self-Influence: A Mislabeled Sample Perspective]]
 
   ],
   [
@@ -216,14 +216,14 @@
   main-column-second-row: [
     Yeonsung Jung, Jaeyun Song, June Yong Yang, Jin-Hwa Kim, #emph[Sung-Yub Kim], Eunho Yang
 
-    #link("https://openreview.net/pdf?id=ZVrrPNqHFw")[openreview.net\/pdf?id=ZVrrPNqHFw] (NeurIPS 2024)
+    (NeurIPS 2024)
 
   ],
 )
 
   #regular-entry(
   [
-    #strong[TTD: Text-Tag Self-Distillation Enhancing Image-Text Alignment in CLIP to Alleviate Single Tag Bias]
+    #strong[#link("https://arxiv.org/pdf/2404.00384")[TTD: Text-Tag Self-Distillation Enhancing Image-Text Alignment in CLIP to Alleviate Single Tag Bias]]
 
   ],
   [
@@ -231,14 +231,14 @@
   main-column-second-row: [
     Sanghyun Jo, Soohyun Ryu, #emph[Sung-Yub Kim], Eunho Yang, Kyungsu Kim
 
-    #link("https://arxiv.org/pdf/2404.00384")[arxiv.org\/pdf\/2404.00384] (ECCV 2024)
+    (ECCV 2024)
 
   ],
 )
 
   #regular-entry(
   [
-    #strong[GEX: A flexible method for approximating influence via Geometric Ensemble]
+    #strong[#link("https://openreview.net/pdf?id=tz4ECtAu8e")[GEX: A flexible method for approximating influence via Geometric Ensemble]]
 
   ],
   [
@@ -246,14 +246,14 @@
   main-column-second-row: [
     #emph[Sung-Yub Kim], Kyungsu Kim, Eunho Yang
 
-    #link("https://openreview.net/pdf?id=tz4ECtAu8e")[openreview.net\/pdf?id=tz4ECtAu8e] (NeurIPS 2023)
+    (NeurIPS 2023)
 
   ],
 )
 
   #regular-entry(
   [
-    #strong[RGE: A Repulsive Graph Rectification for Node Classification via Influence]
+    #strong[#link("https://openreview.net/pdf?id=OcKwZhPwHA")[RGE: A Repulsive Graph Rectification for Node Classification via Influence]]
 
   ],
   [
@@ -261,14 +261,14 @@
   main-column-second-row: [
     Jaeyun Song, #emph[Sung-Yub Kim], Eunho Yang
 
-    #link("https://openreview.net/pdf?id=OcKwZhPwHA")[openreview.net\/pdf?id=OcKwZhPwHA] (ICML 2023)
+    (ICML 2023)
 
   ],
 )
 
   #regular-entry(
   [
-    #strong[Scale-invariant Bayesian Neural Networks with Connectivity Tangent Kernel]
+    #strong[#link("https://openreview.net/pdf?id=OcKwZhPwHA")[Scale-invariant Bayesian Neural Networks with Connectivity Tangent Kernel]]
 
   ],
   [
@@ -276,7 +276,7 @@
   main-column-second-row: [
     #emph[Sung-Yub Kim], Sihwan Park, Kyungsu Kim, Eunho Yang
 
-    #link("https://openreview.net/pdf?id=OcKwZhPwHA")[openreview.net\/pdf?id=OcKwZhPwHA] (ICLR 2023, Spotlighted)
+    (ICLR 2023, Spotlighted)
 
   ],
 )
