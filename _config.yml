@@ -236,8 +236,8 @@ jekyll-archives:
       tags: "/blog/:type/:name/"
       categories: "/blog/:type/:name/"
 
-display_tags: ["flash-attention", "attention", "distributed-training", "tensor-parallelism", "sequence-parallelism", "math", "dev"]
-display_categories: ["ml-systems"]
+display_tags: []
+display_categories: []
 
 # -----------------------------------------------------------------------------
 # Jekyll Scholar
