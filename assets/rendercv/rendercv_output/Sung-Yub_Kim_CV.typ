@@ -157,11 +157,17 @@
 
   ],
   main-column-second-row: [
-    - Post-Training team \@ HyperScale AI.
+    - Foundation Post-Training team \@ HyperScale AI, responsible for RL training.
 
-    - Stabilized RLVR training of Mixture-of-Experts (MoE) models.
+    - Improved the Sovereign AI alignment of LLM (30B–300B) with LLM-as-a-Judge, mitigating reward hacking in Instruction-Following tasks.
 
-    - Mitigated repetitive generation in LLMs via mechanistic interpretability analysis.
+    - Reduced the hallucination of LLM (30B–300B) with Synthetic Data Generation.
+
+    - Stabilized RLVR training of Mixture-of-Experts (MoE) LLM (30B–300B).
+
+    - Mitigated repetitive generation of LLM (30B–300B) with Mechanistic Interpretability analysis.
+
+    - Accelerated RL training by 20–30\% each with MXFP8 & Speculative Decoding (DFlash 1-2) in rollouts.
 
   ],
 )
