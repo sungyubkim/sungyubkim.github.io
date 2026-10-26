@@ -38,9 +38,12 @@ cv:
         end_date: present
         location: Seongnam, Korea
         highlights:
-          - Post-Training team @ HyperScale AI.
-          - Stabilized RLVR training of Mixture-of-Experts (MoE) models.
-          - Mitigated repetitive generation in LLMs via mechanistic interpretability analysis.
+          - Foundation Post-Training team @ HyperScale AI, responsible for RL training.
+          - Improved the Sovereign AI alignment of LLM (30B–300B) with LLM-as-a-Judge, mitigating reward hacking in Instruction-Following tasks.
+          - Reduced the hallucination of LLM (30B–300B) with Synthetic Data Generation.
+          - Stabilized RLVR training of Mixture-of-Experts (MoE) LLM (30B–300B).
+          - Mitigated repetitive generation of LLM (30B–300B) with Mechanistic Interpretability analysis.
+          - Accelerated RL training by 20–30% each with MXFP8 & Speculative Decoding (DFlash 1-2) in rollouts.
       - company: Samsung Electronics
         position: Staff Engineer
         start_date: 2024-02

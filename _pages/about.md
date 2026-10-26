@@ -25,7 +25,7 @@ redirect_from:
   - /about.html
 ---
 
-I'm a Research Scientist in the Post-Training team @ **HyperScale AI, NAVER Cloud**. I received my Ph.D. from KAIST, where I studied machine learning and deep learning theory.
+I'm a Research Scientist in the Foundation Post-Training team @ **HyperScale AI, NAVER Cloud**, where I'm responsible for reinforcement learning (RL) training of LLMs. I received my Ph.D. from KAIST, where I studied machine learning and deep learning theory.
 
 ## Research Interests
 
