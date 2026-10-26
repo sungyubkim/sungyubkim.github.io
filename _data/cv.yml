@@ -53,6 +53,21 @@ cv:
           - Achieved 49% on CVDP Spec2RTL benchmark via RL fine-tuning of GPT-Oss (120B), surpassing Claude 3.7 Sonnet (48%) and DeepSeek-R1 (44%).
           - Optimized training (FSDPs, NeMo) & inference (vLLM, SGLang) frameworks for LLMs in HPC (≥ 256 GPUs).
     Publications:
+      - title: "[KV4-RL: Unlocking Faster Asynchronous Rollouts for RLVR with INT4 KV Cache Quantization](https://arxiv.org/pdf/2610.14448)"
+        authors:
+          - Sihwan Park
+          - "*Sung-Yub Kim*"
+          - Doohyuk Jang
+          - Eunho Yang
+        journal: arXiv 2026
+      - title: "[LANTERN++: Enhancing Relaxed Speculative Decoding with Static Tree Drafting for Visual Auto-regressive Models](https://arxiv.org/pdf/2502.06352)"
+        authors:
+          - Sihwan Park
+          - Doohyuk Jang
+          - "*Sung-Yub Kim*"
+          - Souvik Kundu
+          - Eunho Yang
+        journal: ICLR 2025 Workshop on SCOPE, Oral
       - title: "[LANTERN: Accelerating Visual Autoregressive Models with Relaxed Speculative Decoding](https://openreview.net/pdf?id=98d7DLMGdt)"
         authors:
           - Doohyuk Jang
