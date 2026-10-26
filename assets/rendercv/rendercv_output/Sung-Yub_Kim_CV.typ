@@ -6,7 +6,7 @@
   name: "Sung-Yub Kim",
   title: "Sung-Yub Kim - CV",
   footer: context { [#emph[Sung-Yub Kim -- #str(here().page())\/#str(counter(page).final().first())]] },
-  top-note: [ #emph[Last updated in Apr 2026] ],
+  top-note: [ #emph[Last updated in Oct 2026] ],
   locale-catalog-language: "en",
   text-direction: ltr,
   page-size: "us-letter",
@@ -80,8 +80,8 @@
   entries-highlights-space-between-bullet-and-text: 0.3em,
   date: datetime(
     year: 2026,
-    month: 4,
-    day: 19,
+    month: 10,
+    day: 26,
   ),
 )
 
@@ -190,6 +190,36 @@
 )
 
 == Publications
+
+  #regular-entry(
+  [
+    #strong[#link("https://arxiv.org/pdf/2610.14448")[KV4-RL: Unlocking Faster Asynchronous Rollouts for RLVR with INT4 KV Cache Quantization]]
+
+  ],
+  [
+  ],
+  main-column-second-row: [
+    Sihwan Park, #emph[Sung-Yub Kim], Doohyuk Jang, Eunho Yang
+
+    (arXiv 2026)
+
+  ],
+)
+
+  #regular-entry(
+  [
+    #strong[#link("https://arxiv.org/pdf/2502.06352")[LANTERN++: Enhancing Relaxed Speculative Decoding with Static Tree Drafting for Visual Auto-regressive Models]]
+
+  ],
+  [
+  ],
+  main-column-second-row: [
+    Sihwan Park, Doohyuk Jang, #emph[Sung-Yub Kim], Souvik Kundu, Eunho Yang
+
+    (ICLR 2025 Workshop on SCOPE, Oral)
+
+  ],
+)
 
   #regular-entry(
   [
