@@ -298,7 +298,7 @@
 
   #regular-entry(
   [
-    #strong[#link("https://openreview.net/pdf?id=OcKwZhPwHA")[Scale-invariant Bayesian Neural Networks with Connectivity Tangent Kernel]]
+    #strong[#link("https://openreview.net/pdf?id=VZ5EaTI6dqa")[Scale-invariant Bayesian Neural Networks with Connectivity Tangent Kernel]]
 
   ],
   [
