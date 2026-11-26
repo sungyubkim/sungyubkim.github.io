@@ -6,7 +6,7 @@
   name: "Sung-Yub Kim",
   title: "Sung-Yub Kim - CV",
   footer: context { [#emph[Sung-Yub Kim -- #str(here().page())\/#str(counter(page).final().first())]] },
-  top-note: [ #emph[Last updated in Oct 2026] ],
+  top-note: [ #emph[Last updated in Nov 2026] ],
   locale-catalog-language: "en",
   text-direction: ltr,
   page-size: "us-letter",
@@ -80,7 +80,7 @@
   entries-highlights-space-between-bullet-and-text: 0.3em,
   date: datetime(
     year: 2026,
-    month: 10,
+    month: 11,
     day: 26,
   ),
 )
@@ -163,11 +163,11 @@
 
     - Reduced the hallucination of LLM (30B–300B) with Synthetic Data Generation.
 
-    - Stabilized RLVR training of Mixture-of-Experts (MoE) LLM (30B–300B).
+    - Stabilized RLVR training of Mixture-of-Experts (MoE) LLM (30B–300B) with batch-invariant kernels, achieving zero train-inference mismatch on fresh tokens.
 
     - Mitigated repetitive generation of LLM (30B–300B) with Mechanistic Interpretability analysis.
 
-    - Accelerated RL training by 20–30\% each with MXFP8 & Speculative Decoding (DFlash 1-2) in rollouts.
+    - Accelerated RL training by 20–30\% each with MXFP8 & Speculative Decoding (DFlash 1-2) in rollouts, and RDMA-based communication optimization in Rollout Router Replay (R3).
 
   ],
 )
